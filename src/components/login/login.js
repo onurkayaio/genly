@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { parseQueryString } from "../helpers";
-
-// actions
-import { testAction } from "../actions";
+import { parseQueryString } from "../../helpers";
 
 // enums.
 import {
   spotify_client_id,
   spotify_redirect_uri,
   spotify_token_scopes
-} from "../enums/index";
+} from "../../enums";
 
-class Home extends Component {
+import "./login.css";
+
+class Login extends Component {
   login() {
     window.location = [
       "https://accounts.spotify.com/authorize",
@@ -40,11 +37,7 @@ class Home extends Component {
     const tokenObj = JSON.parse(localStorage.getItem("token"));
 
     // check token isExists and not expired.
-    if (
-      tokenObj &&
-      tokenObj.access_token &&
-      new Date() < new Date(tokenObj.expires)
-    ) {
+    if (tokenObj && tokenObj.token && new Date() < new Date(tokenObj.expires)) {
       return tokenObj;
     } else return null;
   }
@@ -79,19 +72,28 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="login-component">
         <div>
           {this.loggedInStatus() ? (
             <div>
               <p>You're logged in to Spotify!</p>
             </div>
           ) : (
-            <button
-              className="btn btn-md btn-dark"
-              onClick={this.buttonClick.bind(this)}
-            >
-              Log in with Spotify
-            </button>
+            <div>
+              <h1>g e n l y</h1>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
+              </p>
+              <button
+                type="button"
+                className="login-button btn btn-dark"
+                onClick={this.buttonClick.bind(this)}
+              >
+                <i class="fa fa-spotify fa-lg" />
+                Login with Spotify
+              </button>
+            </div>
           )}
         </div>
       </div>
@@ -99,17 +101,4 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    test: state.test
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ testAction }, dispatch);
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default Login;
