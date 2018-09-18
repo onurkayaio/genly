@@ -80,19 +80,22 @@ class Login extends Component {
             </div>
           ) : (
             <div>
-              <h1>g e n l y</h1>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-              <button
-                type="button"
-                className="login-button btn btn-dark"
-                onClick={this.buttonClick.bind(this)}
-              >
-                <i class="fa fa-spotify fa-lg" />
-                Login with Spotify
-              </button>
+              <h1 className="home-logo">g e n l y</h1>
+              <h4>generate a spotify playlist by your blog posts.</h4>
+              <div className="home-text">
+                <p>
+                  * You need to login with your spotify to save your generated
+                  playlist.
+                </p>
+                <button
+                  type="button"
+                  className="login-button btn btn-dark"
+                  onClick={this.buttonClick.bind(this)}
+                >
+                  <i className="fa fa-spotify fa-lg" />
+                  Login with Spotify
+                </button>
+              </div>
             </div>
           )}
         </div>
