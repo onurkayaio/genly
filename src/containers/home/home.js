@@ -9,13 +9,16 @@ import { testAction } from "../../actions";
 // css.
 import "./home.css";
 
+// components.
 import Login from "../../components/login/login";
+import Footer from "../../components/footer/footer";
 
 class Home extends Component {
   render() {
     return (
       <div className="home-container">
         <Login />
+        <Footer />
       </div>
     );
   }
