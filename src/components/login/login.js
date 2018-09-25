@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
-import { parseQueryString } from "../../helpers";
+// helper.
+import { parseQueryString, getToken } from "../../helpers";
 
 // enums.
 import {
@@ -9,6 +11,7 @@ import {
   spotify_token_scopes
 } from "../../enums";
 
+// css.
 import "./login.css";
 
 class Login extends Component {
@@ -24,22 +27,13 @@ class Login extends Component {
   }
 
   loginCallback() {
-    if (this.getToken()) return true;
+    if (getToken()) return true;
     else this.setToken();
   }
 
   loggedInStatus() {
-    if (this.getToken()) return true;
+    if (getToken()) return true;
     else return false;
-  }
-
-  getToken() {
-    const tokenObj = JSON.parse(localStorage.getItem("token"));
-
-    // check token isExists and not expired.
-    if (tokenObj && tokenObj.token && new Date() < new Date(tokenObj.expires)) {
-      return tokenObj;
-    } else return null;
   }
 
   setToken() {
@@ -72,21 +66,17 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-component">
+      <div>
         <div>
           {this.loggedInStatus() ? (
             <div>
-              <p>You're logged in to Spotify!</p>
+              <Redirect to="/dashboard" />
             </div>
           ) : (
-            <div>
+            <div className="login-component">
               <h1 className="home-logo">g e n l y</h1>
               <h4>generate a spotify playlist by your blog posts.</h4>
               <div className="home-text">
-                <p>
-                  * You need to login with your spotify to save your generated
-                  playlist.
-                </p>
                 <button
                   type="button"
                   className="login-button btn btn-dark"
