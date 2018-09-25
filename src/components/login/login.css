@@ -1,6 +1,6 @@
 .login-component {
   padding-left: 8vw;
-  padding-top: 16vw;
+  padding-top: 14vw;
 }
 
 .login-component h1 {
@@ -16,6 +16,12 @@
 
 .home-text {
   padding-top: 10vw;
+}
+
+.home-info {
+  padding-top: 1vw;
+  font-style: italic;
+  font-size: 0.9em;
 }
 
 .login-button {
@@ -47,4 +53,8 @@
   .login-component h2 {
     font-size: 2em;
   }
+}
+
+.home-spotify-icon{
+  height: 10pc;
 }

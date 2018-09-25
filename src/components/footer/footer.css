@@ -1,3 +1,10 @@
-footer p {
+.container {
   text-align: center;
+}
+.container a {
+  color: black;
+}
+
+.container a:hover {
+  color: hotpink;
 }

@@ -9,3 +9,12 @@ export function parseQueryString(query) {
       return params;
     }, {});
 }
+
+export function getToken() {
+  const tokenObj = JSON.parse(localStorage.getItem("token"));
+
+  // check token isExists and not expired.
+  if (tokenObj && tokenObj.token && new Date() < new Date(tokenObj.expires)) {
+    return tokenObj;
+  } else return null;
+}
