@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import test_reducer from "./test_reducer";
+import spotify_reducer from "./spotify_reducer";
 
 const rootReducer = combineReducers({
-  test_reducer
+  spotify_reducer
 });
 
 export default rootReducer;
