@@ -6,8 +6,7 @@ import "./footer.css";
 class Footer extends Component {
   render() {
     return (
-      <footer className="footer-contaier">
-        <div className="container">
+      <div id="footer">
           <div className="row">
             <div className="col-sm">
               <a
@@ -37,8 +36,7 @@ class Footer extends Component {
               </a>
             </div>
           </div>
-        </div>
-      </footer>
+      </div>
     );
   }
 }
