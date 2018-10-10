@@ -8,7 +8,7 @@ import Search from "../../components/search/search";
 import Header from "../../components/header/header";
 
 // actions
-import { getUserSpotifyProfile, getUserPlaylists } from "../../actions/spotify";
+import { getUserSpotifyProfile } from "../../actions/spotify";
 
 // helpers.
 import { getToken } from "./../../helpers";
@@ -16,7 +16,6 @@ import { getToken } from "./../../helpers";
 class Dashboard extends Component {
   componentWillMount() {
     this.props.getUserSpotifyProfile();
-    this.props.getUserPlaylists();
   }
 
   loggedInStatus() {
@@ -51,10 +50,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { getUserSpotifyProfile, getUserPlaylists },
-    dispatch
-  );
+  return bindActionCreators({ getUserSpotifyProfile }, dispatch);
 }
 
 export default connect(
