@@ -79,7 +79,7 @@ class Login extends Component {
               <div className="home-text">
                 <button
                   type="button"
-                  className="login-button btn btn-dark"
+                  className="login-button btn"
                   onClick={this.buttonClick.bind(this)}
                 >
                   <i className="fa fa-spotify fa-lg" />

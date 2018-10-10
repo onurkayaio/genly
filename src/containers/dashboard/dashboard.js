@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 
 // components.
 import Search from "../../components/search/search";
+import Header from "../../components/header/header";
 
 // actions
 import { getUserSpotifyProfile, getUserPlaylists } from "../../actions/spotify";
@@ -13,7 +14,7 @@ import { getUserSpotifyProfile, getUserPlaylists } from "../../actions/spotify";
 import { getToken } from "./../../helpers";
 
 class Dashboard extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getUserSpotifyProfile();
     this.props.getUserPlaylists();
   }
@@ -27,7 +28,12 @@ class Dashboard extends Component {
     return (
       <div>
         {this.loggedInStatus() ? (
-          <Search />
+          <div>
+            <Header profile={this.props.spotify.profile} />
+            <div>
+              <Search />
+            </div>
+          </div>
         ) : (
           <div>
             <Redirect to="/" />
@@ -39,10 +45,8 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
-    user_profile: state.profile,
-    playlists: state.playlists
+    spotify: state.spotify
   };
 }
 

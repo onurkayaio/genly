@@ -1,0 +1,126 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.25rem 2.5vw;
+  top: 0;
+  z-index: 10;
+  box-shadow: inset 1px 2000px rgba(180, 208, 208, 0.54);
+}
+
+.header .logo img {
+  display: block;
+  width: 11.5625rem;
+  margin-right: auto;
+}
+
+@media (min-width: 48em) {
+  .header .logo {
+    width: 14.6875rem;
+  }
+}
+
+.header .login {
+  color: #1e3264;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .login .login-left {
+  text-align: right;
+  margin-right: 0.625rem;
+}
+
+.header .login .login-right {
+  position: relative;
+  height: 1.625rem;
+  width: 1.625rem;
+  border-radius: 0.8125rem;
+  box-shadow: 0 0 0 2px #1e3264;
+  overflow: hidden;
+}
+
+.header .login .login-right img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@media (min-width: 48em) {
+  .header .login .login-right {
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 1.5625rem;
+  }
+}
+
+.header .login .logout {
+  color: #1e3264;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.95rem;
+  margin-top: -0.1875rem;
+}
+
+.logout-url {
+  padding-left: 2px;
+}
+
+header .header-left {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+@media (min-width: 48em) {
+  header .header-left {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    left: 0;
+  }
+}
+
+header .header-left svg {
+  width: 11.5625rem;
+  fill: #1e3264;
+  display: block;
+}
+
+header .header-right {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+  display: block;
+  z-index: 10;
+}
+
+header .header-right .lines {
+  z-index: 11;
+}
+
+@media (min-width: 48em) {
+  header .header-right {
+    display: none;
+  }
+}
