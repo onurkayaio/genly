@@ -4,11 +4,21 @@ import React, { Component } from "react";
 import "./search.css";
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    console.log(event.target.value);
+  }
+
   render() {
     return (
       <div className="search-componenet">
         <input
-          type="text"
+          onChange={this.handleChange}
+          type="input"
           name="name"
           className="question"
           id="nme"
