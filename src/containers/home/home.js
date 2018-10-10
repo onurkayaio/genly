@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
-// actions
-import { testAction } from "../../actions";
-
 // css.
 import "./home.css";
 
+// components.
 import Login from "../../components/login/login";
 
 class Home extends Component {
@@ -21,17 +16,4 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    test: state.test
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ testAction }, dispatch);
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default Home;

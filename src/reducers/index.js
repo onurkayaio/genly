@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
-import test_reducer from "./test_reducer";
+import spotify from "./spotify_reducer";
+import tumblr from "./tumblr_reducer";
 
 const rootReducer = combineReducers({
-  test_reducer
+  spotify,
+  tumblr
 });
 
 export default rootReducer;

@@ -1,6 +1,3 @@
-export function testAction() {
-  return {
-    type: "test",
-    payload: "test"
-  };
-}
+export const GET_USER_SPOTIFY_PROFILE = "GET_USER_SPOTIFY_PROFILE";
+export const GET_USER_SPOTIFY_PLAYLISTS = "GET_USER_SPOTIFY_PLAYLISTS";
+export const GET_USER_TUMBLR_POSTS = "GET_USER_TUMBLR_POSTS";

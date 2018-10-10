@@ -1,0 +1,10 @@
+.footer-contaier {
+  text-align: center;
+}
+.footer-contaier a {
+  color: black;
+}
+
+.footer-contaier a:hover {
+  color: hotpink;
+}
