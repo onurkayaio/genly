@@ -1,23 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 // components.
 import Search from "../../components/search/search";
 import Header from "../../components/header/header";
 
-// actions
-import { getUserSpotifyProfile } from "../../actions/spotify";
-
 // helpers.
 import { getToken } from "./../../helpers";
 
 class Dashboard extends Component {
-  componentWillMount() {
-    this.props.getUserSpotifyProfile();
-  }
-
   loggedInStatus() {
     if (getToken()) return true;
     else return false;
@@ -28,7 +19,7 @@ class Dashboard extends Component {
       <div>
         {this.loggedInStatus() ? (
           <div>
-            <Header profile={this.props.spotify.profile} />
+            <Header />
             <div>
               <Search />
             </div>
@@ -43,17 +34,4 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    spotify: state.spotify
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserSpotifyProfile }, dispatch);
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default Dashboard;
