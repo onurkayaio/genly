@@ -19,7 +19,7 @@ class Dashboard extends Component {
     else return false;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getUserSpotifyProfile();
   }
 
@@ -54,7 +54,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     spotify: state.spotify,
     tumblr: state.tumblr

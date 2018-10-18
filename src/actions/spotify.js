@@ -18,21 +18,32 @@ const requestParams = {
 };
 
 export function getUserSpotifyProfile() {
-  // axios example. 
-  let request = axios
-    .get(`${spotify_base_url}/me`, { headers: { Authorization: token } })
-    .then(data => {
-      return data["data"];
-    })
-    .catch(function(error) {
-      console.log(error);
+  return dispatch => {
+    dispatch({
+      type: GET_USER_SPOTIFY_PROFILE
     });
 
-  console.log(request);
+    return axios
+      .get(`${spotify_base_url}/me`, { headers: { Authorization: token } })
+      .then(data => {
+        dispatch({
+          type: GET_USER_SPOTIFY_PROFILE
+        });
+        dispatch(setPokemons(data));
+      })
+      .catch(function(error) {
+        dispatch({
+          type: GET_USER_SPOTIFY_PROFILE,
+          payload: error.message
+        });
+      });
+  };
+}
 
+function setPokemons(data) {
   return {
     type: GET_USER_SPOTIFY_PROFILE,
-    payload: request
+    payload: data["data"]
   };
 }
 
