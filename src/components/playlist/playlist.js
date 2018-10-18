@@ -3,8 +3,9 @@ import React from "react";
 function displayTracks(tracks) {
   return tracks.tracks.map(function(track) {
     return (
-      <div class="col-md-3">
+      <div key={track.id} classname-="col-md-4">
         <iframe
+          title={tracks.name}
           src={`https://embed.spotify.com/?uri=${
             track.uri
           }&amp;theme=white&amp;view=coverart`}
@@ -17,10 +18,11 @@ function displayTracks(tracks) {
     );
   });
 }
+
 const Playlist = ({ tracks }) => {
   return (
-    <div class="container">
-      <div class="row">{displayTracks(tracks)}</div>
+    <div className="container">
+      <div className="row">{displayTracks(tracks)}</div>
     </div>
   );
 };

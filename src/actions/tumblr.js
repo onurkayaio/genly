@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // actions.
 import {
   GET_USER_TUMBLR_POSTS,
@@ -33,11 +35,18 @@ export function getUserBlogPosts(blogName) {
 
 function getTracksOfPosts(blogName) {
   async function getPostsRequest(blogName) {
-    let response = await fetch(
-      `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
-    );
+    let response = await axios
+      .get(
+        `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
+      )
+      .then(data => {
+        return data["data"];
+      })
+      .catch(function(error) {
+        return error.response['data'];
+      });
 
-    let postsData = await response.json();
+    let postsData = await response;
 
     // TODO: handle error dispatches.
     if (postsData["meta"]["status"] === 404) {
