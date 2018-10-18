@@ -1,5 +1,8 @@
 // actions.
-import { GET_USER_TUMBLR_POSTS } from "./../actions/index";
+import {
+  GET_USER_TUMBLR_POSTS,
+  EMPTY_USER_TUMBLR_POSTS
+} from "./../actions/index";
 
 // spotify action requirements.
 import { getTracks } from "./spotify";
@@ -15,6 +18,13 @@ let tracks = [];
 export function getUserBlogPosts(blogName) {
   let request = getTracksOfPosts(blogName);
 
+  if (request["status"] === 404) {
+    return {
+      type: EMPTY_USER_TUMBLR_POSTS,
+      payload: request
+    };
+  }
+
   return {
     type: GET_USER_TUMBLR_POSTS,
     payload: request
@@ -28,6 +38,17 @@ function getTracksOfPosts(blogName) {
     );
 
     let postsData = await response.json();
+
+    // TODO: handle error dispatches.
+    if (postsData["meta"]["status"] === 404) {
+      return {
+        status: 404
+      };
+    }
+
+    if (postsData["response"]["posts"].length === 0) {
+      return [];
+    }
 
     let tracksData = await getTracks(
       postsData["response"]["posts"]
