@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getUserSpotifyProfile, postUserPlaylist } from "../../actions/spotify";
+import { getUserBlogPosts } from "../../actions/tumblr";
+import connect from "react-redux/es/connect/connect";
 
 // components.
 import Search from "../../components/search/search";
 import Header from "../../components/header/header";
-
-// actions
-import { getUserSpotifyProfile } from "../../actions/spotify";
+import Playlist from "../../components/playlist/playlist";
 
 // helpers.
 import { getToken } from "./../../helpers";
 
 class Dashboard extends Component {
+  loggedInStatus() {
+    if (getToken()) return true;
+    else return false;
+  }
+
   componentWillMount() {
     this.props.getUserSpotifyProfile();
   }
 
-  loggedInStatus() {
-    if (getToken()) return true;
-    else return false;
+  handleChange(event) {
+    if (event.which === 13) {
+      this.props.getUserBlogPosts(event.currentTarget.value);
+    }
   }
 
   render() {
@@ -28,10 +34,14 @@ class Dashboard extends Component {
       <div>
         {this.loggedInStatus() ? (
           <div>
-            <Header profile={this.props.spotify.profile} />
-            <div>
-              <Search />
-            </div>
+            <Header spotify={this.props.spotify} />
+            {this.props.tumblr.tracks.length > 0 ? (
+              <Playlist tracks={this.props.tumblr} />
+            ) : (
+              <div>
+                <Search onChange={this.handleChange.bind(this)} />
+              </div>
+            )}
           </div>
         ) : (
           <div>
@@ -44,13 +54,18 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    spotify: state.spotify
+    spotify: state.spotify,
+    tumblr: state.tumblr
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserSpotifyProfile }, dispatch);
+  return bindActionCreators(
+    { getUserSpotifyProfile, getUserBlogPosts, postUserPlaylist },
+    dispatch
+  );
 }
 
 export default connect(

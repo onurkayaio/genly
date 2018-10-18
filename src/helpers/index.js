@@ -18,3 +18,7 @@ export function getToken() {
     return tokenObj;
   } else return null;
 }
+
+export function deleteToken() {
+  localStorage.removeItem("token");
+}

@@ -1,16 +1,19 @@
 // actions.
 import { GET_USER_TUMBLR_POSTS } from "./../actions/index";
 
+// spotify action requirements.
+import { getTracks } from "./spotify";
+
 const tumblr_base_url = "https://api.tumblr.com/v2";
 const consumer_public_key =
   "NF3QHodm2PoqByjVp4oTOSlV7QwZ9qzeIgnYPsS18j0dtWxZ4c"; // need to hide it.
 
-var limit = 20;
-var offset = 0;
-var posts = [];
+let limit = 20;
+let offset = 0;
+let tracks = [];
 
 export function getUserBlogPosts(blogName) {
-  var request = getPosts(blogName);
+  let request = getTracksOfPosts(blogName);
 
   return {
     type: GET_USER_TUMBLR_POSTS,
@@ -18,28 +21,32 @@ export function getUserBlogPosts(blogName) {
   };
 }
 
-function getPosts(blogName) {
+function getTracksOfPosts(blogName) {
   async function getPostsRequest(blogName) {
-    var response = await fetch(
+    let response = await fetch(
       `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
     );
 
-    var postsData = await response.json();
+    let postsData = await response.json();
 
-    if (postsData['meta']['status'] === 200) {
-      
-    }
-    
-    posts = posts.concat(postsData["response"]["posts"]);
+    let tracksData = await getTracks(
+      postsData["response"]["posts"]
+        .filter(post => post["audio_type"] === "spotify")
+        .map(
+          post =>
+            post["audio_source_url"].split("https://open.spotify.com/track/")[1]
+        )
+        .join(",")
+    );
+
+    tracks = tracks.concat(tracksData["tracks"]);
 
     if (postsData["response"]["posts"].length === 20) {
       offset = offset + limit;
-      await getPosts(blogName);
-    } else {
-      return posts;
+      await getTracksOfPosts(blogName);
     }
 
-    return posts;
+    return tracks;
   }
 
   return getPostsRequest(blogName);

@@ -1,9 +1,13 @@
 import { GET_USER_TUMBLR_POSTS } from "./../actions/index";
 
-export default function(state = {}, action) {
+const initialState = {
+  tracks: []
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER_TUMBLR_POSTS:
-      return { ...state, posts: action.payload };
+      return { ...state, tracks: action.payload };
     default:
       return state;
   }
