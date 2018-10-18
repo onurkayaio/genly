@@ -21,7 +21,9 @@ const Header = ({ spotify }) => {
       </div>
       <div className="login">
         <div className="login-left">
-          <div className="user-name">{`${spotify.profile ? spotify.profile.display_name : null}`}</div>
+          <div className="user-name">{`${
+            spotify.profile ? spotify.profile.display_name : null
+          }`}</div>
           <div className="logout">
             <a href="/logout" className="logout-url">
               Share&ensp;
