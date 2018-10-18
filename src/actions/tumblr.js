@@ -1,7 +1,11 @@
+import axios from "axios";
+
 // actions.
 import {
   GET_USER_TUMBLR_POSTS,
-  EMPTY_USER_TUMBLR_POSTS
+  GET_USER_TUMBLR_POSTS_CLEAR,
+  GET_USER_TUMBLR_POSTS_ERROR,
+  GET_USER_TUMBLR_POSTS_ERROR_CLEAR
 } from "./../actions/index";
 
 // spotify action requirements.
@@ -16,38 +20,45 @@ let offset = 0;
 let tracks = [];
 
 export function getUserBlogPosts(blogName) {
-  let request = getTracksOfPosts(blogName);
+  return dispatch => {
+    dispatch(clearPostsAndErrors());
 
-  if (request["status"] === 404) {
-    return {
-      type: EMPTY_USER_TUMBLR_POSTS,
-      payload: request
-    };
-  }
-
-  return {
-    type: GET_USER_TUMBLR_POSTS,
-    payload: request
+    getTracksOfPosts(blogName).then(data => {
+      if (data["status"] === 200) {
+        dispatch({
+          type: GET_USER_TUMBLR_POSTS,
+          payload: data["tracks"]
+        });
+      } else {
+        dispatch({
+          type: GET_USER_TUMBLR_POSTS_ERROR,
+          payload: data["message"]
+        });
+      }
+    });
   };
 }
 
 function getTracksOfPosts(blogName) {
   async function getPostsRequest(blogName) {
-    let response = await fetch(
-      `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
-    );
+    let response = await axios
+      .get(
+        `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
+      )
+      .then(data => {
+        return data["data"];
+      })
+      .catch(error => {
+        return error.response;
+      });
 
-    let postsData = await response.json();
+    let postsData = await response;
 
-    // TODO: handle error dispatches.
-    if (postsData["meta"]["status"] === 404) {
+    if (postsData["data"] && postsData["data"]["meta"]["status"] === 404) {
       return {
+        message: postsData["data"]["meta"]["msg"],
         status: 404
       };
-    }
-
-    if (postsData["response"]["posts"].length === 0) {
-      return [];
     }
 
     let tracksData = await getTracks(
@@ -67,8 +78,25 @@ function getTracksOfPosts(blogName) {
       await getTracksOfPosts(blogName);
     }
 
-    return tracks;
+    let data = {
+      tracks: tracks,
+      status: 200
+    };
+
+    return data;
   }
 
   return getPostsRequest(blogName);
+}
+
+function clearPostsAndErrors() {
+  return dispatch => {
+    dispatch({
+      type: GET_USER_TUMBLR_POSTS_CLEAR
+    });
+
+    dispatch({
+      type: GET_USER_TUMBLR_POSTS_ERROR_CLEAR
+    });
+  };
 }

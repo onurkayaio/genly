@@ -19,7 +19,7 @@ class Dashboard extends Component {
     else return false;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getUserSpotifyProfile();
   }
 

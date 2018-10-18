@@ -1,4 +1,11 @@
-import { GET_USER_SPOTIFY_PROFILE, POST_USER_SPOTIFY_PLAYLIST } from "./index";
+import {
+  GET_USER_SPOTIFY_PROFILE,
+  GET_USER_SPOTIFY_PROFILE_ERROR,
+  POST_USER_SPOTIFY_PLAYLIST,
+  POST_USER_SPOTIFY_PLAYLIST_ERROR
+} from "./index";
+
+import axios from "axios";
 
 // helper.
 import { getToken } from "./../helpers";
@@ -8,66 +15,67 @@ const spotify_base_url = "https://api.spotify.com/v1";
 // get token.
 const token = getToken() ? "Bearer " + getToken()["token"] : null;
 
-const requestParams = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: token
-  }
-};
-
-function checkTokenExists() {
-  requestParams.headers.Authorization = getToken()
-    ? "Bearer " + getToken()["token"]
-    : null;
-}
-
 export function getUserSpotifyProfile() {
-  // TODO: burayı yeniden gözden geçir.
-  if (requestParams.headers.Authorization === null) {
-    checkTokenExists();
-  }
-
-  const request = fetch(`${spotify_base_url}/me`, requestParams).then(
-    response => response.json()
-  );
-
-  return {
-    type: GET_USER_SPOTIFY_PROFILE,
-    payload: request
+  return dispatch => {
+    return axios
+      .get(`${spotify_base_url}/me`, { headers: { Authorization: token } })
+      .then(data => {
+        dispatch({
+          type: GET_USER_SPOTIFY_PROFILE,
+          payload: data["data"]
+        });
+      })
+      .catch(function(error) {
+        dispatch({
+          type: GET_USER_SPOTIFY_PROFILE_ERROR,
+          payload: error.message
+        });
+      });
   };
 }
 
 export function postUserPlaylist(name, description, isPublic) {
-  if (requestParams.headers.Authorization === null) {
-    checkTokenExists();
-  }
-
-  const request = fetch(`${spotify_base_url}/playlists`, {
-    method: "POST",
-    headers: requestParams.headers,
-    body: JSON.stringify({
-      name: name,
-      description: description,
-      public: isPublic
-    })
-  }).then(response => response.json());
-
-  return {
-    type: POST_USER_SPOTIFY_PLAYLIST,
-    payload: request
+  return dispatch => {
+    return axios
+      .post(
+        `${spotify_base_url}/me/playlists`,
+        JSON.stringify({
+          name: name,
+          description: description,
+          public: isPublic
+        }),
+        {
+          headers: {
+            Authorization: token
+          }
+        }
+      )
+      .then(data => {
+        dispatch({
+          type: POST_USER_SPOTIFY_PLAYLIST,
+          payload: data["data"]
+        });
+      })
+      .catch(function(error) {
+        dispatch({
+          type: POST_USER_SPOTIFY_PLAYLIST_ERROR,
+          payload: error.message
+        });
+      });
   };
 }
 
 export function getTracks(trackIds) {
-  if (requestParams.headers.Authorization === null) {
-    checkTokenExists();
-  }
-
-  const request = fetch(
-    `${spotify_base_url}/tracks?ids=${trackIds}`,
-    requestParams
-  ).then(response => response.json());
-
-  return request;
+  return axios
+    .get(`${spotify_base_url}/tracks?ids=${trackIds}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+    .then(data => {
+      return data["data"];
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
