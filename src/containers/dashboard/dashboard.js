@@ -19,7 +19,8 @@ class Dashboard extends Component {
     else return false;
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log(process.env.REACT_APP_WEATHER_API_KEY);
     this.props.getUserSpotifyProfile();
   }
 
@@ -39,7 +40,12 @@ class Dashboard extends Component {
               <Playlist tracks={this.props.tumblr} />
             ) : (
               <div>
-                <Search onChange={this.handleChange.bind(this)} />
+                <Search
+                  error={
+                    this.props.tumblr.error ? this.props.tumblr.error : null
+                  }
+                  onChange={this.handleChange.bind(this)}
+                />
               </div>
             )}
           </div>

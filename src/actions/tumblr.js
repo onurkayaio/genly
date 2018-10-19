@@ -1,19 +1,14 @@
 import axios from "axios";
-
-// actions.
 import {
   GET_USER_TUMBLR_POSTS,
   GET_USER_TUMBLR_POSTS_CLEAR,
   GET_USER_TUMBLR_POSTS_ERROR,
   GET_USER_TUMBLR_POSTS_ERROR_CLEAR
 } from "./../actions/index";
-
-// spotify action requirements.
 import { getTracks } from "./spotify";
 
 const tumblr_base_url = "https://api.tumblr.com/v2";
-const consumer_public_key =
-  "NF3QHodm2PoqByjVp4oTOSlV7QwZ9qzeIgnYPsS18j0dtWxZ4c"; // need to hide it.
+const consumer_public_key = process.env.REACT_APP_TUMBLR_CONSUMER_PUBLIC_KEY;
 
 let limit = 20;
 let offset = 0;
