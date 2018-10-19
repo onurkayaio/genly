@@ -20,8 +20,15 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    console.log(process.env.REACT_APP_WEATHER_API_KEY);
-    this.props.getUserSpotifyProfile();
+    if (getToken()) {
+      this.props.getUserSpotifyProfile();
+    } else {
+      return (
+        <div>
+          <Redirect to="/" />
+        </div>
+      );
+    }
   }
 
   handleChange(event) {

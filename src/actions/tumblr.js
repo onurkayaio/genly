@@ -47,28 +47,51 @@ function getTracksOfPosts(blogName) {
         return error.response;
       });
 
-    let postsData = await response;
+    // get response as json.
+    let responseData = await response;
 
-    if (postsData["data"] && postsData["data"]["meta"]["status"] === 404) {
+    // if blog is not found return error.
+    if (
+      responseData["data"] &&
+      responseData["data"]["meta"]["status"] === 404
+    ) {
       return {
-        message: postsData["data"]["meta"]["msg"],
+        message: "Blog not found.",
         status: 404
       };
     }
 
-    let tracksData = await getTracks(
-      postsData["response"]["posts"]
-        .filter(post => post["audio_type"] === "spotify")
-        .map(
-          post =>
-            post["audio_source_url"].split("https://open.spotify.com/track/")[1]
-        )
-        .join(",")
-    );
+    let spotifyPosts = responseData["response"]["posts"]
+      .filter(post => post["audio_type"] === "spotify")
+      .map(
+        post =>
+          post["audio_source_url"].split("https://open.spotify.com/track/")[1]
+      )
+      .join(",");
 
-    tracks = tracks.concat(tracksData["tracks"]);
+    if (!spotifyPosts) {
+      return {
+        message: "Not found spotify audio post.",
+        status: 404
+      };
+    }
 
-    if (postsData["response"]["posts"].length === 20) {
+    // get spotify tracks by responseData.
+    let spotifyPostsData = await getTracks(spotifyPosts);
+
+    // if there is not spotify tracks response error.
+    if (!spotifyPostsData["tracks"]) {
+      return {
+        message: "Not found audio post.",
+        status: 404
+      };
+    }
+
+    // merge tracks.
+    tracks = tracks.concat(spotifyPostsData["tracks"]);
+
+    // get paginated tracks by recursive.
+    if (responseData["response"]["posts"].length === 20) {
       offset = offset + limit;
       await getTracksOfPosts(blogName);
     }
