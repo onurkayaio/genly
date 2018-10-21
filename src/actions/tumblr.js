@@ -26,22 +26,21 @@ export function getUserBlogPosts(blogName) {
     getTracksOfPosts(blogName).then(data => {
       if (data["status"] === 200) {
         dispatch({
+          type: REQUEST_ACTIVE,
+          payload: false
+        });
+        dispatch({
           type: GET_USER_TUMBLR_POSTS,
           payload: data["tracks"]
         });
-
+      } else {
         dispatch({
           type: REQUEST_ACTIVE,
           payload: false
         });
-      } else {
         dispatch({
           type: GET_USER_TUMBLR_POSTS_ERROR,
           payload: data["message"]
-        });
-        dispatch({
-          type: REQUEST_ACTIVE,
-          payload: false
         });
       }
     });

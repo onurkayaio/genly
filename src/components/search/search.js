@@ -11,7 +11,7 @@ import { getUserBlogPosts } from "../../actions/tumblr";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -22,21 +22,25 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="search-componenet">
-        <input
-          onKeyPress={this.handleChange}
-          type="input"
-          name="name"
-          className="question"
-          id="nme"
-          required
-          autoComplete="off"
-        />
-        <label htmlFor="nme">
-          <span>What's the blog name?</span>
-        </label>
+      <div>
+        {!this.props.tumblr.isFetched ? (
+          <div className="search-componenet">
+            <input
+              onKeyPress={this.handleChange}
+              type="input"
+              name="name"
+              className="question"
+              id="nme"
+              required
+              autoComplete="off"
+            />
+            <label htmlFor="nme">
+              <span>What's the blog name?</span>
+            </label>
+          </div>
+        ) : null}
       </div>
-    )
+    );
   }
 }
 
@@ -47,10 +51,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { getUserBlogPosts },
-    dispatch
-  );
+  return bindActionCreators({ getUserBlogPosts }, dispatch);
 }
 
 export default connect(
