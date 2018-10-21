@@ -9,17 +9,13 @@ import connect from "react-redux/es/connect/connect";
 import Search from "../../components/search/search";
 import Header from "../../components/header/header";
 import Playlist from "../../components/playlist/playlist";
+import Toaster from "../../components/toaster/toaster";
 
 // helpers.
 import { getToken } from "./../../helpers";
 
 class Dashboard extends Component {
-  loggedInStatus() {
-    if (getToken()) return true;
-    else return false;
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     if (getToken()) {
       this.props.getUserSpotifyProfile();
     } else {
@@ -38,21 +34,18 @@ class Dashboard extends Component {
   }
 
   render() {
+    let { tumblr, spotify } = this.props;
+
     return (
       <div>
-        {this.loggedInStatus() ? (
+        {getToken() ? (
           <div>
-            <Header spotify={this.props.spotify} />
-            {this.props.tumblr.tracks.length > 0 ? (
-              <Playlist tracks={this.props.tumblr} />
+            <Header spotify={spotify} />
+            {tumblr.tracks.length > 0 ? (
+              <Playlist tracks={tumblr} />
             ) : (
               <div>
-                <Search
-                  error={
-                    this.props.tumblr.error ? this.props.tumblr.error : null
-                  }
-                  onChange={this.handleChange.bind(this)}
-                />
+                <Search onChange={this.handleChange.bind(this)} />
               </div>
             )}
           </div>
@@ -61,13 +54,22 @@ class Dashboard extends Component {
             <Redirect to="/" />
           </div>
         )}
+
+        {tumblr.error ? <Toaster error={tumblr.error} /> : null}
+
+        {tumblr.isFetched ? (
+          <div>
+            <img alt="loading" src={require("../../images/loading.gif")} />
+          </div>
+        ) : (
+          <div>NOTTTTTTT</div>
+        )}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     spotify: state.spotify,
     tumblr: state.tumblr

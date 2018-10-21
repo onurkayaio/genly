@@ -1,0 +1,8 @@
+.toast-container {
+  color: black;
+  background-color: rgba(180, 208, 208, 0.54);
+}
+
+.toast-container .Toastify__toast-body {
+  padding-left: 20px;
+}

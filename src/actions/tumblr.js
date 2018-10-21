@@ -3,7 +3,8 @@ import {
   GET_USER_TUMBLR_POSTS,
   GET_USER_TUMBLR_POSTS_CLEAR,
   GET_USER_TUMBLR_POSTS_ERROR,
-  GET_USER_TUMBLR_POSTS_ERROR_CLEAR
+  GET_USER_TUMBLR_POSTS_ERROR_CLEAR,
+  REQUEST_ACTIVE
 } from "./../actions/index";
 import { getTracks } from "./spotify";
 
@@ -17,6 +18,10 @@ let tracks = [];
 export function getUserBlogPosts(blogName) {
   return dispatch => {
     dispatch(clearPostsAndErrors());
+    dispatch({
+      type: REQUEST_ACTIVE,
+      payload: true
+    });
 
     getTracksOfPosts(blogName).then(data => {
       if (data["status"] === 200) {
@@ -24,10 +29,19 @@ export function getUserBlogPosts(blogName) {
           type: GET_USER_TUMBLR_POSTS,
           payload: data["tracks"]
         });
+
+        dispatch({
+          type: REQUEST_ACTIVE,
+          payload: false
+        });
       } else {
         dispatch({
           type: GET_USER_TUMBLR_POSTS_ERROR,
           payload: data["message"]
+        });
+        dispatch({
+          type: REQUEST_ACTIVE,
+          payload: false
         });
       }
     });
