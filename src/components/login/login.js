@@ -5,14 +5,13 @@ import { Redirect } from "react-router-dom";
 import { parseQueryString, getToken } from "../../helpers";
 
 // enums.
-import {
-  spotify_client_id,
-  spotify_redirect_uri,
-  spotify_token_scopes
-} from "../../enums";
+import { spotify_token_scopes } from "../../enums";
 
 // css.
 import "./login.css";
+
+const spotify_client_id = process.env.REACT_APP_SPOTIFY_PUBLIC_CLIENT_ID;
+const spotify_redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
 class Login extends Component {
   login() {

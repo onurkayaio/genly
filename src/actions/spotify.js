@@ -1,3 +1,6 @@
+/**
+ * Spofiy.js holds the actions to get/post data between app and spotify API.
+ */
 import {
   GET_USER_SPOTIFY_PROFILE,
   GET_USER_SPOTIFY_PROFILE_ERROR,
@@ -6,19 +9,19 @@ import {
 } from "./index";
 
 import axios from "axios";
-
-// helper.
 import { getToken } from "./../helpers";
 
 const spotify_base_url = "https://api.spotify.com/v1";
-
-// get token.
-const token = getToken() ? "Bearer " + getToken()["token"] : null;
+const token = getToken() ? "Bearer " + getToken()["token"] : null; // check the token exists.
 
 export function getUserSpotifyProfile() {
   return dispatch => {
     return axios
-      .get(`${spotify_base_url}/me`, { headers: { Authorization: token } })
+      .get(`${spotify_base_url}/me`, {
+        headers: {
+          Authorization: token ? token : "Bearer " + getToken()["token"]
+        }
+      })
       .then(data => {
         dispatch({
           type: GET_USER_SPOTIFY_PROFILE,

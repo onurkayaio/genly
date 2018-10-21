@@ -21,3 +21,5 @@ export const GET_USER_TUMBLR_POSTS_ERROR_CLEAR =
   "GET_USER_TUMBLR_POSTS_ERROR_CLEAR";
 
 // TODO: maybe we do not need so many actions, check it.
+
+export const REQUEST_ACTIVE = "REQUEST_ACTIVE";
