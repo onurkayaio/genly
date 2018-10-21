@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { getUserSpotifyProfile, postUserPlaylist } from "../../actions/spotify";
+import { postUserPlaylist } from "../../actions/spotify";
 import { getUserBlogPosts } from "../../actions/tumblr";
 import connect from "react-redux/es/connect/connect";
 
@@ -15,18 +15,6 @@ import Toaster from "../../components/toaster/toaster";
 import { getToken } from "./../../helpers";
 
 class Dashboard extends Component {
-  componentDidMount() {
-    if (getToken()) {
-      this.props.getUserSpotifyProfile();
-    } else {
-      return (
-        <div>
-          <Redirect to="/" />
-        </div>
-      );
-    }
-  }
-
   handleChange(event) {
     if (event.which === 13) {
       this.props.getUserBlogPosts(event.currentTarget.value);
@@ -34,13 +22,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    let { tumblr, spotify } = this.props;
-
+    let { tumblr } = this.props;
     return (
       <div>
         {getToken() ? (
           <div>
-            <Header spotify={spotify} />
+            <Header />
             {tumblr.tracks.length > 0 ? (
               <Playlist tracks={tumblr} />
             ) : (
@@ -71,14 +58,13 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    spotify: state.spotify,
     tumblr: state.tumblr
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { getUserSpotifyProfile, getUserBlogPosts, postUserPlaylist },
+    { getUserBlogPosts, postUserPlaylist },
     dispatch
   );
 }
