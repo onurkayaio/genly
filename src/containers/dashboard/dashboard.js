@@ -6,6 +6,7 @@ import Search from "../../components/search/search";
 import Header from "../../components/header/header";
 import Toaster from "../../components/toaster/toaster";
 import Spinner from "../../components/spinner/spinner";
+import Playlist from "../../components/playlist/playlist";
 
 // helpers.
 import { getToken } from "./../../helpers";
@@ -18,6 +19,7 @@ class Dashboard extends Component {
           <div>
             <Header />
             <Search />
+            <Playlist />
           </div>
         ) : (
           <div>

@@ -7,7 +7,6 @@ class Spinner extends Component {
   render() {
     let { tumblr } = this.props;
 
-    console.log(tumblr);
     return (
       <div>
         {tumblr.isFetched ? (

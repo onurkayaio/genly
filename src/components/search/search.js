@@ -21,22 +21,30 @@ class Search extends Component {
   }
 
   render() {
+    let { tracks, isFetched } = this.props.tumblr;
+
     return (
       <div>
-        {!this.props.tumblr.isFetched ? (
-          <div className="search-componenet">
-            <input
-              onKeyPress={this.handleChange}
-              type="input"
-              name="name"
-              className="question"
-              id="nme"
-              required
-              autoComplete="off"
-            />
-            <label htmlFor="nme">
-              <span>What's the blog name?</span>
-            </label>
+        {!isFetched ? (
+          <div>
+            {
+              tracks.length === 0 ? (
+                <div className="search-componenet">
+                  <input
+                    onKeyPress={this.handleChange}
+                    type="input"
+                    name="name"
+                    className="question"
+                    id="nme"
+                    required
+                    autoComplete="off"
+                  />
+                  <label htmlFor="nme">
+                    <span>What's the blog name?</span>
+                  </label>
+                </div>
+              ) : null
+            }
           </div>
         ) : null}
       </div>
