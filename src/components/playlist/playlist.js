@@ -92,15 +92,21 @@ class Playlist extends Component {
     return (
       <div>
         {tracks.length > 0 ? (
-          <div>
-            <div className="float-left">
-              <button className="btn-outline-info btn">Generate Another</button>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 generate-another text-center">
+                <button className=" btn " type="button">
+                  Save Playlist
+                </button>
+              </div>
+              <div className="col-md-6 save-playlist text-center">
+                <button className=" btn " type="button">
+                  Generate Another
+                </button>
+              </div>
             </div>
-            <div className="float-right">
-              <button className="btn-outline-info btn">Save Playlist</button>
-            </div>
-            <div className="container">
-              <div className="row">{renderTracks}</div>
+            <div className="row" style={{ marginLeft: "15px" }}>
+              {renderTracks}
             </div>
           </div>
         ) : null}

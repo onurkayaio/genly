@@ -23,3 +23,18 @@
   color: black;
   border: 1px solid rgba(180, 208, 208, 0.54);
 }
+
+.generate-another button,
+.save-playlist button {
+  margin-top: 40px;
+  margin-bottom: -20px;
+  padding: 0.8rem;
+  background-color: transparent;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 1.875rem;
+  color: red;
+  border: 3px solid red !important;
+  font-weight: bold;
+}
