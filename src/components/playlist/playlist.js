@@ -15,7 +15,6 @@ class Playlist extends Component {
     this.handlePagination = this.handlePagination.bind(this);
   }
 
-
   handlePagination(event) {
     this.setState({
       currentPage: Number(event.target.id)
@@ -30,12 +29,15 @@ class Playlist extends Component {
     const indexOfFirstTodo = indexOfLastTodo - tracksPerPage;
     const currentTracks = tracks.slice(indexOfFirstTodo, indexOfLastTodo);
 
-    const renderTracks = currentTracks.map(function (track) {
+    const renderTracks = currentTracks.map(function(track) {
       return (
         <div key={track.id} classname-="col-md-4">
           <iframe
+            className="lazyload"
             title={tracks.name}
-            src={`https://embed.spotify.com/?uri=${track.uri}&amp;theme=white&amp;view=coverart`}
+            src={`https://embed.spotify.com/?uri=${
+              track.uri
+            }&amp;theme=white&amp;view=coverart`}
             width="100%"
             height="80"
             frameBorder="0"
@@ -65,23 +67,16 @@ class Playlist extends Component {
 
     return (
       <div>
-        {
-          tracks.length > 0 ?
-            (
-              <div className="container">
-                <div className="row">
-                  {renderTracks}
-                </div>
-                <div className="center">
-                  <div className="pagination">
-                    {renderPageNumbers}
-                  </div>
-                </div>
-              </div>
-            ) : null
-        }
+        {tracks.length > 0 ? (
+          <div className="container">
+            <div className="row">{renderTracks}</div>
+            <div className="center">
+              <div className="pagination">{renderPageNumbers}</div>
+            </div>
+          </div>
+        ) : null}
       </div>
-    )
+    );
   }
 }
 
@@ -91,6 +86,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-)(Playlist);
+export default connect(mapStateToProps)(Playlist);
