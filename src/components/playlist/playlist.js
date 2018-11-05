@@ -23,6 +23,10 @@ class Playlist extends Component {
     this.handlePagination = this.handlePagination.bind(this);
     this.playAudio = this.playAudio.bind(this);
     this.stopAudio = this.stopAudio.bind(this);
+    this.handleGeneratePlaylist = this.handleGeneratePlaylist.bind(this);
+    this.handleGenerateAnotherPlaylist = this.handleGenerateAnotherPlaylist.bind(
+      this
+    );
   }
 
   playAudio(previewUrl, trackId) {
@@ -49,6 +53,14 @@ class Playlist extends Component {
     this.setState({
       currentPage: Number(event.target.id)
     });
+  }
+
+  handleGeneratePlaylist() {
+    console.log("lol");
+  }
+
+  handleGenerateAnotherPlaylist() {
+    console.log("lol2");
   }
 
   render() {
@@ -93,16 +105,33 @@ class Playlist extends Component {
       <div>
         {tracks.length > 0 ? (
           <div className="container">
-            <div className="row">
+            <div className="row buttons">
               <div className="col-md-6 generate-another text-center">
-                <button className=" btn " type="button">
-                  Save Playlist
-                </button>
+                <div className="offset-2 col-md-8">
+                  save playlistsave playlistsave playlistsave playlistsave
+                  playlistsave playlistsave playlistsave playlistsave
+                  playlistsave playlist
+                </div>
               </div>
               <div className="col-md-6 save-playlist text-center">
-                <button className=" btn " type="button">
-                  Generate Another
-                </button>
+                <div>
+                  <div
+                    class="float-left col-md-5 generate-button"
+                    onClick={this.handleGenerateAnotherPlaylist}
+                  >
+                    generate another
+                    <div />
+                    <i class="fa fa-times" />
+                  </div>
+                  <div
+                    class="float-right col-md-5 save-button"
+                    onClick={this.handleGeneratePlaylist}
+                  >
+                    save playlist
+                    <div />
+                    <i class="fa fa-check" />
+                  </div>
+                </div>
               </div>
             </div>
             <div className="row" style={{ marginLeft: "15px" }}>
