@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import connect from "react-redux/es/connect/connect";
 
+// css.
 import "./playlist.css";
+
+// components.
+import Track from "../track/track";
+
+let audio = new Audio();
 
 class Playlist extends Component {
   constructor(props) {
@@ -9,12 +15,39 @@ class Playlist extends Component {
 
     this.state = {
       currentPage: 1,
-      tracksPerPage: 6
+      tracksPerPage: 10,
+      playing: false,
+      currentTrackId: null
     };
 
     this.handlePagination = this.handlePagination.bind(this);
+    this.playAudio = this.playAudio.bind(this);
+    this.stopAudio = this.stopAudio.bind(this);
+    this.handleGeneratePlaylist = this.handleGeneratePlaylist.bind(this);
+    this.handleGenerateAnotherPlaylist = this.handleGenerateAnotherPlaylist.bind(
+      this
+    );
   }
 
+  playAudio(previewUrl, trackId) {
+    audio.src = previewUrl;
+
+    this.setState({
+      playing: true,
+      currentTrackId: trackId
+    });
+
+    audio.play();
+  }
+
+  stopAudio() {
+    this.setState({
+      playing: false,
+      currentTrackId: null
+    });
+
+    audio.pause();
+  }
 
   handlePagination(event) {
     this.setState({
@@ -22,26 +55,31 @@ class Playlist extends Component {
     });
   }
 
+  handleGeneratePlaylist() {
+    console.log("lol");
+  }
+
+  handleGenerateAnotherPlaylist() {
+    console.log("lol2");
+  }
+
   render() {
     let { tracks } = this.props.tumblr;
-    let { currentPage, tracksPerPage } = this.state;
+    let { currentPage, tracksPerPage, playing, currentTrackId } = this.state;
 
     const indexOfLastTodo = currentPage * tracksPerPage;
     const indexOfFirstTodo = indexOfLastTodo - tracksPerPage;
     const currentTracks = tracks.slice(indexOfFirstTodo, indexOfLastTodo);
 
-    const renderTracks = currentTracks.map(function (track) {
+    const renderTracks = currentTracks.map(track => {
       return (
-        <div key={track.id} classname-="col-md-4">
-          <iframe
-            title={tracks.name}
-            src={`https://embed.spotify.com/?uri=${track.uri}&amp;theme=white&amp;view=coverart`}
-            width="100%"
-            height="80"
-            frameBorder="0"
-            allowtransparency="true"
-          />
-        </div>
+        <Track
+          stopAudio={this.stopAudio}
+          playAudio={this.playAudio}
+          currentTrackId={currentTrackId}
+          playing={playing}
+          track={track}
+        />
       );
     });
 
@@ -65,23 +103,47 @@ class Playlist extends Component {
 
     return (
       <div>
-        {
-          tracks.length > 0 ?
-            (
-              <div className="container">
-                <div className="row">
-                  {renderTracks}
+        {tracks.length > 0 ? (
+          <div className="container">
+            <div className="row buttons">
+              <div className="col-md-6 generate-another text-center">
+                <div className="offset-2 col-md-8">
+                  save playlistsave playlistsave playlistsave playlistsave
+                  playlistsave playlistsave playlistsave playlistsave
+                  playlistsave playlist
                 </div>
-                <div className="center">
-                  <div className="pagination">
-                    {renderPageNumbers}
+              </div>
+              <div className="col-md-6 save-playlist text-center">
+                <div>
+                  <div
+                    class="float-left col-md-5 generate-button"
+                    onClick={this.handleGenerateAnotherPlaylist}
+                  >
+                    generate another
+                    <div />
+                    <i class="fa fa-times" />
+                  </div>
+                  <div
+                    class="float-right col-md-5 save-button"
+                    onClick={this.handleGeneratePlaylist}
+                  >
+                    save playlist
+                    <div />
+                    <i class="fa fa-check" />
                   </div>
                 </div>
               </div>
-            ) : null
-        }
+            </div>
+            <div className="row" style={{ marginLeft: "15px" }}>
+              {renderTracks}
+            </div>
+          </div>
+        ) : null}
+        <div className="center">
+          <div className="pagination">{renderPageNumbers}</div>
+        </div>
       </div>
-    )
+    );
   }
 }
 
@@ -91,6 +153,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-)(Playlist);
+export default connect(mapStateToProps)(Playlist);

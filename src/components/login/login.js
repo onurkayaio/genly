@@ -81,7 +81,7 @@ class Login extends Component {
                   className="login-button btn"
                   onClick={this.buttonClick.bind(this)}
                 >
-                  <i className="fa fa-spotify fa-lg" />
+                  <i className="fab fa-spotify fa-lg" />
                   Login with Spotify
                 </button>
               </div>

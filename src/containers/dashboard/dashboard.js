@@ -11,6 +11,8 @@ import Playlist from "../../components/playlist/playlist";
 // helpers.
 import { getToken } from "./../../helpers";
 
+import "./dashboard.css";
+
 class Dashboard extends Component {
   render() {
     return (
@@ -26,7 +28,6 @@ class Dashboard extends Component {
             <Redirect to="/" />
           </div>
         )}
-
         <Toaster />
         <Spinner />
       </div>

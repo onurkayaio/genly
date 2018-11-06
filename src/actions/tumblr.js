@@ -74,6 +74,7 @@ function getTracksOfPosts(blogName) {
       };
     }
 
+    console.log(responseData);
     let spotifyPosts = responseData["response"]["posts"]
       .filter(post => post["audio_type"] === "spotify")
       .map(

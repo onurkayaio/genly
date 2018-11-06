@@ -1,23 +1,135 @@
 .center {
-    text-align: center;
+  text-align: center;
+  margin-top: 100px;
 }
 
 .pagination {
-    display: inline-block;
+  text-align: center;
+  display: inline-block;
 }
 
 .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 0 4px;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
 }
 
 .pagination a.active {
-    background-color: rgba(180, 208, 208, 0.54);
-    color: black;
-    border: 1px solid rgba(180, 208, 208, 0.54);
+  background-color: rgba(180, 208, 208, 0.54);
+  color: black;
+  border: 1px solid rgba(180, 208, 208, 0.54);
+}
+
+.generate-another button,
+.save-playlist button {
+  margin-top: 40px;
+  margin-bottom: -20px;
+  padding: 0.8rem;
+  background-color: transparent;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 1.875rem;
+  color: red;
+  border: 3px solid red !important;
+  font-weight: bold;
+}
+
+.save-button {
+  backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  background: #b4d0d0;
+  border-radius: 500px;
+  border: 0px solid #444;
+  border-width: 0px 0px 0px 0px;
+  padding: 8px 20px 8px 50px;
+  color: #fff;
+  font-size: 15px;
+  font-family: Helvetica Neue;
+  font-weight: 900;
+  font-style: normal;
+}
+.save-button > div {
+  color: #999;
+  font-size: 10px;
+  font-family: Helvetica Neue;
+  font-weight: initial;
+  font-style: normal;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+}
+.save-button > i {
+  color: #b4d0d0;
+  font-size: 1em;
+  background: #fff;
+  border-radius: 100px;
+  border: 4px solid #b4d0d0;
+  border-width: 4px 4px 4px 4px;
+  padding: 11px 12px 11px 12px;
+  margin: 6px 6px 6px 6px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  bottom: -10px;
+}
+.save-button > .ld {
+  font-size: initial;
+}
+
+.generate-button {
+  backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  background: #dda77b;
+  border-radius: 500px;
+  border: 0px solid #444;
+  border-width: 0px 0px 0px 0px;
+  padding: 8px 20px 8px 50px;
+  color: #fff;
+  font-size: 15px;
+  font-family: Helvetica Neue;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.generate-button > div {
+  color: #999;
+  font-size: 10px;
+  font-family: Helvetica Neue;
+  font-weight: initial;
+  font-style: normal;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+}
+
+.generate-button > i {
+  color: #dda77b;
+  font-size: 1em;
+  background: #fff;
+  border-radius: 100px;
+  border: 4px solid #dda77b;
+  border-width: 4px 4px 4px 4px;
+  padding: 11px 12px 11px 12px;
+  margin: 6px 6px 6px 6px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  bottom: -10px;
+}
+
+.generate-button > .ld {
+  font-size: initial;
+}
+
+.buttons {
+  padding-top: 50px;
 }

@@ -15,7 +15,7 @@ class Search extends Component {
   }
 
   handleChange(event) {
-    if (event.which === 13) {
+    if (event.which === 13 && event.currentTarget.value) {
       this.props.getUserBlogPosts(event.currentTarget.value);
     }
   }
@@ -27,24 +27,22 @@ class Search extends Component {
       <div>
         {!isFetched ? (
           <div>
-            {
-              tracks.length === 0 ? (
-                <div className="search-componenet">
-                  <input
-                    onKeyPress={this.handleChange}
-                    type="input"
-                    name="name"
-                    className="question"
-                    id="nme"
-                    required
-                    autoComplete="off"
-                  />
-                  <label htmlFor="nme">
-                    <span>What's the blog name?</span>
-                  </label>
-                </div>
-              ) : null
-            }
+            {tracks.length === 0 ? (
+              <div className="search-componenet">
+                <input
+                  onKeyPress={this.handleChange}
+                  type="input"
+                  name="name"
+                  className="question"
+                  id="nme"
+                  required
+                  autoComplete="off"
+                />
+                <label htmlFor="nme">
+                  <span>What's the blog name?</span>
+                </label>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
