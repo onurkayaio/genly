@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
+
+// actions.
+import { clearPostsAndErrors } from "../../actions/tumblr";
+import { postUserPlaylist } from "../../actions/spotify";
 
 // css.
 import "./playlist.css";
 
 // components.
 import Track from "../track/track";
+import Information from "../information/information";
 
 let audio = new Audio();
 
@@ -56,15 +62,15 @@ class Playlist extends Component {
   }
 
   handleGeneratePlaylist() {
-    console.log("lol");
+    this.props.postUserPlaylist("lol", "lol2", false, this.props.tumblr.tracks);
   }
 
   handleGenerateAnotherPlaylist() {
-    console.log("lol2");
+    this.props.clearPostsAndErrors();
   }
 
   render() {
-    let { tracks } = this.props.tumblr;
+    let { tracks, profile } = this.props.tumblr;
     let { currentPage, tracksPerPage, playing, currentTrackId } = this.state;
 
     const indexOfLastTodo = currentPage * tracksPerPage;
@@ -73,13 +79,15 @@ class Playlist extends Component {
 
     const renderTracks = currentTracks.map(track => {
       return (
-        <Track
-          stopAudio={this.stopAudio}
-          playAudio={this.playAudio}
-          currentTrackId={currentTrackId}
-          playing={playing}
-          track={track}
-        />
+        <div key={track.id}>
+          <Track
+            stopAudio={this.stopAudio}
+            playAudio={this.playAudio}
+            currentTrackId={currentTrackId}
+            playing={playing}
+            track={track}
+          />
+        </div>
       );
     });
 
@@ -108,28 +116,29 @@ class Playlist extends Component {
             <div className="row buttons">
               <div className="col-md-6 generate-another text-center">
                 <div className="offset-2 col-md-8">
-                  save playlistsave playlistsave playlistsave playlistsave
-                  playlistsave playlistsave playlistsave playlistsave
-                  playlistsave playlist
+                  <Information
+                    blogProfile={profile}
+                    countOfTracks={tracks.length}
+                  />
                 </div>
               </div>
               <div className="col-md-6 save-playlist text-center">
                 <div>
                   <div
-                    class="float-left col-md-5 generate-button"
+                    className="float-left col-md-5 generate-button"
                     onClick={this.handleGenerateAnotherPlaylist}
                   >
                     generate another
                     <div />
-                    <i class="fa fa-times" />
+                    <i className="fa fa-times" />
                   </div>
                   <div
-                    class="float-right col-md-5 save-button"
+                    className="float-right col-md-5 save-button"
                     onClick={this.handleGeneratePlaylist}
                   >
                     save playlist
                     <div />
-                    <i class="fa fa-check" />
+                    <i className="fa fa-check" />
                   </div>
                 </div>
               </div>
@@ -148,9 +157,21 @@ class Playlist extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    tumblr: state.tumblr
+    tumblr: state.tumblr,
+    spotify: state.spotify
   };
 }
 
-export default connect(mapStateToProps)(Playlist);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { clearPostsAndErrors, postUserPlaylist },
+    dispatch
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Playlist);

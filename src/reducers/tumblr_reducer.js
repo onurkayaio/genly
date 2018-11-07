@@ -9,13 +9,18 @@ import {
 const initialState = {
   isFetched: false,
   tracks: [],
-  error: null
+  error: null,
+  profile: null
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER_TUMBLR_POSTS:
-      return { ...state, tracks: action.payload };
+      return {
+        ...state,
+        tracks: action.payload["tracks"],
+        profile: action.payload["profile"]
+      };
     case GET_USER_TUMBLR_POSTS_CLEAR:
       return { ...state, tracks: [] };
     case GET_USER_TUMBLR_POSTS_ERROR:

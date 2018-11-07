@@ -4,8 +4,7 @@
 import {
   GET_USER_SPOTIFY_PROFILE,
   GET_USER_SPOTIFY_PROFILE_ERROR,
-  POST_USER_SPOTIFY_PLAYLIST,
-  POST_USER_SPOTIFY_PLAYLIST_ERROR
+  POST_USER_SPOTIFY_PLAYLIST
 } from "./index";
 
 import axios from "axios";
@@ -37,42 +36,57 @@ export function getUserSpotifyProfile() {
   };
 }
 
-export function postUserPlaylist(name, description, isPublic) {
+export function postUserPlaylist(name, description, isPublic, songs) {
   return dispatch => {
-    return axios
-      .post(
-        `${spotify_base_url}/me/playlists`,
-        JSON.stringify({
-          name: name,
-          description: description,
-          public: isPublic
-        }),
+    generatePlaylist(name, description, isPublic, songs).then(data => {
+      dispatch({
+        type: POST_USER_SPOTIFY_PLAYLIST,
+        payload: data['data']
+      });
+    });
+  };
+}
+
+async function generatePlaylist(name, description, isPublic, songs) {
+  return axios
+    .post(
+      `${spotify_base_url}/me/playlists`,
+      JSON.stringify({
+        name: name,
+        description: description,
+        public: isPublic
+      }),
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    )
+    .then(data => {
+      let songUrls = songs.map(song => song["uri"]).join(",");
+
+      axios.post(
+        `${spotify_base_url}/playlists/${
+          data["data"]["id"]
+        }/tracks/?position=0&uris=${songUrls}`,
+        null,
         {
           headers: {
             Authorization: token
           }
         }
-      )
-      .then(data => {
-        dispatch({
-          type: POST_USER_SPOTIFY_PLAYLIST,
-          payload: data["data"]
-        });
-      })
-      .catch(function(error) {
-        dispatch({
-          type: POST_USER_SPOTIFY_PLAYLIST_ERROR,
-          payload: error.message
-        });
-      });
-  };
+      );
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 
 export function getTracks(trackIds) {
   return axios
     .get(`${spotify_base_url}/tracks?ids=${trackIds}`, {
       headers: {
-        Authorization: token
+        Authorization: token ? token : "Bearer " + getToken()["token"]
       }
     })
     .then(data => {

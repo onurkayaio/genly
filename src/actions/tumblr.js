@@ -31,7 +31,7 @@ export function getUserBlogPosts(blogName) {
         });
         dispatch({
           type: GET_USER_TUMBLR_POSTS,
-          payload: data["tracks"]
+          payload: data
         });
       } else {
         dispatch({
@@ -74,9 +74,13 @@ function getTracksOfPosts(blogName) {
       };
     }
 
-    console.log(responseData);
     let spotifyPosts = responseData["response"]["posts"]
-      .filter(post => post["audio_type"] === "spotify")
+      .filter(
+        post =>
+          post["type"] === "audio" &&
+          post["audio_type"] === "spotify" &&
+          post["audio_source_url"] != null
+      )
       .map(
         post =>
           post["audio_source_url"].split("https://open.spotify.com/track/")[1]
@@ -99,10 +103,10 @@ function getTracksOfPosts(blogName) {
         message: "Not found audio post.",
         status: 404
       };
+    } else {
+      // merge tracks.
+      tracks = tracks.concat(spotifyPostsData["tracks"]);
     }
-
-    // merge tracks.
-    tracks = tracks.concat(spotifyPostsData["tracks"]);
 
     // get paginated tracks by recursive.
     if (responseData["response"]["posts"].length === 20) {
@@ -112,7 +116,8 @@ function getTracksOfPosts(blogName) {
 
     let data = {
       tracks: tracks,
-      status: 200
+      status: 200,
+      profile: responseData["response"]["blog"]
     };
 
     return data;
@@ -121,7 +126,7 @@ function getTracksOfPosts(blogName) {
   return getPostsRequest(blogName);
 }
 
-function clearPostsAndErrors() {
+export function clearPostsAndErrors() {
   return dispatch => {
     dispatch({
       type: GET_USER_TUMBLR_POSTS_CLEAR
