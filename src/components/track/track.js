@@ -4,9 +4,8 @@ import React from "react";
 import "./track.css";
 
 const Track = ({ currentTrackId, playing, track, stopAudio, playAudio }) => {
-  console.log(track.id);
   return (
-    <div key={track.id} className="wrapper">
+    <div className="wrapper">
       <div className="card">
         {track.preview_url ? (
           <div className="overlayer">
