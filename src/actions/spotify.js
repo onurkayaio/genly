@@ -4,7 +4,8 @@
 import {
   GET_USER_SPOTIFY_PROFILE,
   GET_USER_SPOTIFY_PROFILE_ERROR,
-  POST_USER_SPOTIFY_PLAYLIST
+  POST_USER_SPOTIFY_PLAYLIST,
+  POST_USER_SPOTIFY_PLAYLIST_ERROR
 } from "./index";
 
 import axios from "axios";
@@ -27,7 +28,7 @@ export function getUserSpotifyProfile() {
           payload: data["data"]
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         dispatch({
           type: GET_USER_SPOTIFY_PROFILE_ERROR,
           payload: error.message
@@ -39,15 +40,24 @@ export function getUserSpotifyProfile() {
 export function postUserPlaylist(name, description, isPublic, songs) {
   return dispatch => {
     generatePlaylist(name, description, isPublic, songs).then(data => {
-      dispatch({
-        type: POST_USER_SPOTIFY_PLAYLIST,
-        payload: data['data']
-      });
+      console.log(data);
+
+      if (data["status"] === 201) {
+        dispatch({
+          type: POST_USER_SPOTIFY_PLAYLIST,
+          payload: data["data"]
+        });
+      } else {
+        dispatch({
+          type: POST_USER_SPOTIFY_PLAYLIST_ERROR,
+          payload: "an error occured"
+        });
+      }
     });
   };
 }
 
-async function generatePlaylist(name, description, isPublic, songs) {
+function generatePlaylist(name, description, isPublic, songs) {
   return axios
     .post(
       `${spotify_base_url}/me/playlists`,
@@ -65,10 +75,10 @@ async function generatePlaylist(name, description, isPublic, songs) {
     .then(data => {
       let songUrls = songs.map(song => song["uri"]).join(",");
 
-      axios.post(
+      return axios.post(
         `${spotify_base_url}/playlists/${
           data["data"]["id"]
-        }/tracks/?position=0&uris=${songUrls}`,
+          }/tracks/?position=0&uris=${songUrls}`,
         null,
         {
           headers: {
@@ -77,7 +87,7 @@ async function generatePlaylist(name, description, isPublic, songs) {
         }
       );
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error);
     });
 }
@@ -92,7 +102,7 @@ export function getTracks(trackIds) {
     .then(data => {
       return data["data"];
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error);
     });
 }
