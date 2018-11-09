@@ -4,7 +4,8 @@ import {
   GET_USER_TUMBLR_POSTS_CLEAR,
   GET_USER_TUMBLR_POSTS_ERROR,
   GET_USER_TUMBLR_POSTS_ERROR_CLEAR,
-  REQUEST_ACTIVE
+  REQUEST_ACTIVE,
+  POST_USER_SPOTIFY_PLAYLIST_CLEAR
 } from "./../actions/index";
 import { getTracks } from "./spotify";
 
@@ -22,6 +23,10 @@ export function getUserBlogPosts(blogName) {
       type: REQUEST_ACTIVE,
       payload: true
     });
+
+    limit = 20;
+    offset = 0;
+    tracks = [];
 
     getTracksOfPosts(blogName).then(data => {
       if (data["status"] === 200) {
@@ -134,6 +139,10 @@ export function clearPostsAndErrors() {
 
     dispatch({
       type: GET_USER_TUMBLR_POSTS_ERROR_CLEAR
+    });
+
+    dispatch({
+      type: POST_USER_SPOTIFY_PLAYLIST_CLEAR
     });
   };
 }

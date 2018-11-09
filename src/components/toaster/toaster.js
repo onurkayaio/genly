@@ -9,9 +9,15 @@ import connect from "react-redux/es/connect/connect";
 
 class Toaster extends Component {
   render() {
-    let { tumblr } = this.props;
+    let { tumblr, spotify } = this.props;
 
     if (tumblr.error) {
+      toast(tumblr.error, {
+        type: toast.TYPE.WARNING
+      });
+    }
+
+    if (spotify.error) {
       toast(tumblr.error, {
         type: toast.TYPE.WARNING
       });
@@ -38,7 +44,8 @@ class Toaster extends Component {
 
 function mapStateToProps(state) {
   return {
-    tumblr: state.tumblr
+    tumblr: state.tumblr,
+    spotify: state.spotify
   };
 }
 

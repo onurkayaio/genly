@@ -28,7 +28,7 @@ export default function (state = initialState, action) {
     case POST_USER_SPOTIFY_PLAYLIST:
       return { ...state, playlist: action.payload };
     case POST_USER_SPOTIFY_PLAYLIST_CLEAR:
-      return { ...state, error: [] };
+      return { ...state, playlist: [] };
     case POST_USER_SPOTIFY_PLAYLIST_ERROR:
       return { ...state, error: action.payload };
     case POST_USER_SPOTIFY_PLAYLIST_ERROR_CLEAR:
