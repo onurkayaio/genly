@@ -8,15 +8,24 @@ const Track = ({ currentTrackId, playing, track, stopAudio, playAudio }) => {
     <div className="wrapper">
       <div className="card">
         {track.preview_url ? (
-          <div className="overlayer">
+          <div>
             <div>
               {currentTrackId && currentTrackId === track.id && playing ? (
-                <i className="fas fa-stop-circle" onClick={stopAudio} />
+                <div>
+                  <div className="overlayer">
+                    <i className="fas fa-stop-circle" onClick={stopAudio} />
+                  </div>
+                  <div className="playing-overlayer">
+                    <i className="fas fa-volume-up" />
+                  </div>
+                </div>
               ) : (
-                <i
-                  className="fas fa-play-circle"
-                  onClick={() => playAudio(track.preview_url, track.id)}
-                />
+                <div className="overlayer">
+                  <i
+                    className="fas fa-play-circle"
+                    onClick={() => playAudio(track.preview_url, track.id)}
+                  />
+                </div>
               )}
             </div>
           </div>
@@ -24,6 +33,8 @@ const Track = ({ currentTrackId, playing, track, stopAudio, playAudio }) => {
         <img src={track.album.images[0].url} alt="" />
         <div className="track-name">
           <p>{track.name}</p>
+        </div>
+        <div className="track-artist">
           <p>{track.artists[0].name}</p>
         </div>
       </div>
