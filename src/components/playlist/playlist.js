@@ -13,6 +13,8 @@ import "./playlist.css";
 import Track from "../track/track";
 import Information from "../information/information";
 import Success from "../success/success";
+import Footer from "../footer/footer";
+import Pagination from "../pagination/pagination";
 
 let audio = new Audio();
 
@@ -28,6 +30,8 @@ class Playlist extends Component {
     };
 
     this.handlePagination = this.handlePagination.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
     this.playAudio = this.playAudio.bind(this);
     this.stopAudio = this.stopAudio.bind(this);
     this.handleGeneratePlaylist = this.handleGeneratePlaylist.bind(this);
@@ -62,6 +66,18 @@ class Playlist extends Component {
     });
   }
 
+  nextPage() {
+    this.setState({
+      currentPage: this.state.currentPage + 1
+    });
+  }
+
+  previousPage() {
+    this.setState({
+      currentPage: this.state.currentPage - 1
+    });
+  }
+
   handleGeneratePlaylist() {
     this.props.postUserPlaylist(
       this.props.tumblr.profile.name + " | genly",
@@ -80,9 +96,9 @@ class Playlist extends Component {
     let { playlist } = this.props.spotify;
     let { currentPage, tracksPerPage, playing, currentTrackId } = this.state;
 
-    const indexOfLastTodo = currentPage * tracksPerPage;
-    const indexOfFirstTodo = indexOfLastTodo - tracksPerPage;
-    const currentTracks = tracks.slice(indexOfFirstTodo, indexOfLastTodo);
+    const indexOfLastTrack = currentPage * tracksPerPage;
+    const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
+    const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);
 
     const renderTracks = currentTracks.map(track => {
       return (
@@ -98,21 +114,20 @@ class Playlist extends Component {
       );
     });
 
+    const countOfPage = Math.ceil(tracks.length / tracksPerPage);
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(tracks.length / tracksPerPage); i++) {
+
+    for (let i = 1; i <= countOfPage; i++) {
       pageNumbers.push(i);
     }
 
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        <a
-          key={number}
-          id={number}
-          className={currentPage === number ? "active" : "inactive"}
-          onClick={this.handlePagination}
-        >
-          {number}
-        </a>
+        <Pagination
+          number={number}
+          currentPage={currentPage}
+          handlePagination={this.handlePagination}
+        />
       );
     });
 
@@ -121,14 +136,13 @@ class Playlist extends Component {
         {tracks.length > 0 && !playlist["snapshot_id"] ? (
           <div className="container">
             <div className="row buttons">
-              <div className="col-md-6 generate-another text-center">
-                <div className="offset-2 col-md-8">
-                  <Information
-                    blogProfile={profile}
-                    countOfTracks={tracks.length}
-                  />
-                </div>
+              <div className="col-md-6 ">
+                <Information
+                  blogProfile={profile}
+                  countOfTracks={tracks.length}
+                />
               </div>
+
               <div className="col-md-6 save-playlist text-center">
                 <div>
                   <div
@@ -156,11 +170,21 @@ class Playlist extends Component {
             </div>
 
             <div className="center">
-              <div className="pagination">{renderPageNumbers}</div>
+              <div className="pagination">
+                <a onClick={currentPage <= 1 ? null : this.previousPage}>
+                  <i className="fas fa-angle-left" />
+                </a>
+                {renderPageNumbers}
+                <a onClick={currentPage >= countOfPage ? null : this.nextPage}>
+                  <i className="fas fa-angle-right" />
+                </a>
+              </div>
             </div>
           </div>
         ) : null}
         <Success />
+
+        {tracks.length > 0 && !playlist["snapshot_id"] ? (<Footer isFixed={false} />) : <Footer isFixed={true} />}
       </div>
     );
   }

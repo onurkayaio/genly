@@ -5,13 +5,20 @@ import "./information.css";
 
 const Information = ({ blogProfile, countOfTracks }) => {
   return (
-    <div>
-      <h5>
-        we found <b className="lol">{countOfTracks}</b> tracks on{" "}
-        <b className="lol2">{blogProfile["name"]}</b>
-        .tumblr.com
-      </h5>
-    </div>
+    <table>
+      <tr>
+        <td>blog</td>
+        <td className="right">{blogProfile["name"]}.tumblr.com</td>
+      </tr>
+      <tr>
+        <td>count of music
+          {/*<i className="tooltips fas fa-question-circle">
+            <span>Musics that we generated can be less than in the blog.</span>
+          </i>*/}
+        </td>
+        <td className="right">{countOfTracks}</td>
+      </tr>
+    </table>
   );
 };
 

@@ -1,44 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
 // css.
 import "./footer.css";
 
-class Footer extends Component {
-  render() {
-    return (
-      <div id="footer">
-          <div className="row">
-            <div className="col-sm">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/onurkayaio/genly"
-              >
-                github
-              </a>
-            </div>
-            <div className="col-sm">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/onurkayaio/genly"
-              >
-                github
-              </a>
-            </div>
-            <div className="col-sm">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/onurkayaio/genly"
-              >
-                github
-              </a>
-            </div>
-          </div>
+const Footer = ({ isFixed }) => {
+  return (
+    <div id={isFixed ? "fixed-footer" : "not-fixed-footer"} className="text-center">
+      <div className="container">
+        <span className="text-muted">Place sticky footer content here.</span>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Footer;

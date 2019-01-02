@@ -11,6 +11,12 @@ class Home extends Component {
     return (
       <div className="home-container">
         <Login />
+
+        <div>
+          <img className="nick-cave" alt="" src={require("./../../images/nick_cave.jpg")} />
+          <img className="leonard-cohen" alt="" src={require("./../../images/leonard_cohen.jpg")} />
+          <img className="tom-waits" alt="" src={require("../../images/tom_waits.jpg")} />
+        </div>
       </div>
     );
   }

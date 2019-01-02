@@ -1,30 +1,9 @@
 .center {
     text-align: center;
-    margin-top: 100px;
-}
-
-.pagination {
-    text-align: center;
-    display: inline-block;
-}
-
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-}
-
-.pagination a.active {
-    background-color: rgba(180, 208, 208, 0.54);
-    color: black;
-    border: 1px solid rgba(180, 208, 208, 0.54);
 }
 
 .save-button {
+    margin-top: 30px;
     backface-visibility: hidden;
     position: relative;
     cursor: pointer;
@@ -68,6 +47,7 @@
 }
 
 .generate-button {
+    margin-top: 30px;
     backface-visibility: hidden;
     position: relative;
     cursor: pointer;
@@ -112,4 +92,22 @@
 
 .buttons {
     padding-top: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+td {
+    padding: 10px;
+}
+
+.right {
+    float: right;
 }

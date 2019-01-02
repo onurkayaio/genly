@@ -1,0 +1,191 @@
+/* Large desktop */
+@media (min-width: 1900px) {
+    .nick-cave, .tom-waits, .leonard-cohen {
+        width: 300px;
+        bottom: 0;
+        position: absolute;
+        border-radius: 30px;
+    }
+
+    .nick-cave {
+        right: 15%;
+        margin-bottom: 320px;
+        -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 4s; /* Firefox < 16 */
+        -o-animation: fadein 4s; /* Opera < 12.1 */
+        animation: fadein 4s;
+    }
+
+    .leonard-cohen {
+        right: 23%;
+        margin-bottom: 450px;
+        -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 3s; /* Firefox < 16 */
+        -o-animation: fadein 3s; /* Opera < 12.1 */
+        animation: fadein 3s;
+    }
+
+    .tom-waits {
+        right: 30%;
+        margin-bottom: 250px;
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 2s; /* Firefox < 16 */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+            transform: translateX(500px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) and (max-width: 1850px) {
+    .nick-cave, .tom-waits, .leonard-cohen {
+        width: 300px;
+        bottom: 0;
+        position: absolute;
+        border-radius: 30px;
+    }
+
+    .nick-cave {
+        right: 10%;
+        margin-bottom: 220px;
+        -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 4s; /* Firefox < 16 */
+        -o-animation: fadein 4s; /* Opera < 12.1 */
+        animation: fadein 4s;
+    }
+
+    .leonard-cohen {
+        right: 20%;
+        margin-bottom: 350px;
+        -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 3s; /* Firefox < 16 */
+        -o-animation: fadein 3s; /* Opera < 12.1 */
+        animation: fadein 3s;
+    }
+
+    .tom-waits {
+        right: 30%;
+        margin-bottom: 150px;
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 2s; /* Firefox < 16 */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+            transform: translateX(500px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+    .nick-cave, .tom-waits, .leonard-cohen {
+        width: 200px;
+        bottom: 0;
+        position: absolute;
+        border-radius: 30px;
+    }
+
+    .nick-cave {
+        right: 10%;
+        margin-bottom: 120px;
+        -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 4s; /* Firefox < 16 */
+        -o-animation: fadein 4s; /* Opera < 12.1 */
+        animation: fadein 4s;
+    }
+
+    .leonard-cohen {
+        right: 20%;
+        margin-bottom: 200px;
+        -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 3s; /* Firefox < 16 */
+        -o-animation: fadein 3s; /* Opera < 12.1 */
+        animation: fadein 3s;
+    }
+
+    .tom-waits {
+        right: 30%;
+        margin-bottom: 80px;
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 2s; /* Firefox < 16 */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+            transform: translateX(500px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .nick-cave, .tom-waits, .leonard-cohen {
+        width: 200px;
+        bottom: 0;
+        position: absolute;
+        border-radius: 30px;
+    }
+
+    .nick-cave {
+        right: 8%;
+        margin-bottom: 100px;
+        -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 4s; /* Firefox < 16 */
+        -o-animation: fadein 4s; /* Opera < 12.1 */
+        animation: fadein 4s;
+    }
+
+    .leonard-cohen {
+        right: 19%;
+        margin-bottom: 180px;
+        -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 3s; /* Firefox < 16 */
+        -o-animation: fadein 3s; /* Opera < 12.1 */
+        animation: fadein 3s;
+    }
+
+    .tom-waits {
+        right: 38%;
+        margin-bottom: 60px;
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 2s; /* Firefox < 16 */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+            transform: translateX(500px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}

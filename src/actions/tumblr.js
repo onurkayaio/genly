@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   GET_USER_TUMBLR_POSTS,
   GET_USER_TUMBLR_POSTS_CLEAR,
@@ -6,10 +6,10 @@ import {
   GET_USER_TUMBLR_POSTS_ERROR_CLEAR,
   REQUEST_ACTIVE,
   POST_USER_SPOTIFY_PLAYLIST_CLEAR
-} from "./../actions/index";
-import { getTracks } from "./spotify";
+} from './../actions/index';
+import { getTracks } from './spotify';
 
-const tumblr_base_url = "https://api.tumblr.com/v2";
+const tumblr_base_url = 'https://api.tumblr.com/v2';
 const consumer_public_key = process.env.REACT_APP_TUMBLR_CONSUMER_PUBLIC_KEY;
 
 let limit = 20;
@@ -29,7 +29,7 @@ export function getUserBlogPosts(blogName) {
     tracks = [];
 
     getTracksOfPosts(blogName).then(data => {
-      if (data["status"] === 200) {
+      if (data['status'] === 200) {
         dispatch({
           type: REQUEST_ACTIVE,
           payload: false
@@ -45,7 +45,7 @@ export function getUserBlogPosts(blogName) {
         });
         dispatch({
           type: GET_USER_TUMBLR_POSTS_ERROR,
-          payload: data["message"]
+          payload: data['message']
         });
       }
     });
@@ -59,7 +59,7 @@ function getTracksOfPosts(blogName) {
         `${tumblr_base_url}/blog/${blogName}/posts/audio?api_key=${consumer_public_key}&limit=${limit}&offset=${offset}`
       )
       .then(data => {
-        return data["data"];
+        return data['data'];
       })
       .catch(error => {
         return error.response;
@@ -68,33 +68,23 @@ function getTracksOfPosts(blogName) {
     // get response as json.
     let responseData = await response;
 
-    // if blog is not found return error.
-    if (
-      responseData["data"] &&
-      responseData["data"]["meta"]["status"] === 404
-    ) {
-      return {
-        message: "Blog not found.",
-        status: 404
-      };
-    }
-
-    let spotifyPosts = responseData["response"]["posts"]
+    console.log(responseData['response']['posts'])
+    let spotifyPosts = responseData['response']['posts']
       .filter(
         post =>
-          post["type"] === "audio" &&
-          post["audio_type"] === "spotify" &&
-          post["audio_source_url"] != null
+          post['type'] === 'audio' &&
+          post['audio_type'] === 'spotify' &&
+          post['audio_source_url'] != null
       )
       .map(
         post =>
-          post["audio_source_url"].split("https://open.spotify.com/track/")[1]
+          post['audio_source_url'].split('https://open.spotify.com/track/')[1]
       )
-      .join(",");
+      .join(',');
 
     if (!spotifyPosts) {
       return {
-        message: "Not found spotify audio post.",
+        message: 'Not found spotify audio post.',
         status: 404
       };
     }
@@ -103,18 +93,21 @@ function getTracksOfPosts(blogName) {
     let spotifyPostsData = await getTracks(spotifyPosts);
 
     // if there is not spotify tracks response error.
-    if (!spotifyPostsData["tracks"]) {
-      return {
-        message: "Not found audio post.",
-        status: 404
-      };
-    } else {
-      // merge tracks.
-      tracks = tracks.concat(spotifyPostsData["tracks"]);
+
+    if (spotifyPostsData) {
+      if (!spotifyPostsData['tracks']) {
+        return {
+          message: 'Not found audio post.',
+          status: 404
+        };
+      } else {
+        // merge tracks.
+        tracks = tracks.concat(spotifyPostsData['tracks']);
+      }
     }
 
     // get paginated tracks by recursive.
-    if (responseData["response"]["posts"].length === 20) {
+    if (responseData['response']['posts'].length === 20) {
       offset = offset + limit;
       await getTracksOfPosts(blogName);
     }
@@ -122,7 +115,7 @@ function getTracksOfPosts(blogName) {
     let data = {
       tracks: tracks,
       status: 200,
-      profile: responseData["response"]["blog"]
+      profile: responseData['response']['blog']
     };
 
     return data;
