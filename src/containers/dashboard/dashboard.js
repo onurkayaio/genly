@@ -1,35 +1,37 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // components.
-import Search from "../../components/search/search";
-import Header from "../../components/header/header";
-import Toaster from "../../components/toaster/toaster";
-import Spinner from "../../components/spinner/spinner";
-import Playlist from "../../components/playlist/playlist";
+import Search from '../../components/search/search';
+import Header from '../../components/header/header';
+import Toaster from '../../components/toaster/toaster';
+import Spinner from '../../components/spinner/spinner';
+import Playlist from '../../components/playlist/playlist';
+
+import './../../style.scss';
 
 // helpers.
-import { getToken } from "./../../helpers";
+import { getToken } from './../../helpers';
 
-import "./dashboard.css";
+import './dashboard.css';
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
-        {getToken() ? (
+        { getToken() ? (
           <div>
-            <Header />
-            <Search />
-            <Playlist />
+            <Header/>
+            <Search/>
+            <Playlist/>
           </div>
         ) : (
           <div>
-            <Redirect to="/" />
+            <Redirect to="/"/>
           </div>
-        )}
-        <Toaster />
-        <Spinner />
+        ) }
+        <Toaster/>
+        <Spinner/>
       </div>
     );
   }

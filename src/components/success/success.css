@@ -1,51 +1,77 @@
-.generate-button {
-    backface-visibility: hidden;
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    white-space: nowrap;
-    background: #dda77b;
-    border-radius: 500px;
-    border: 0px solid #444;
-    border-width: 0px 0px 0px 0px;
-    padding: 8px 20px 8px 50px;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 900;
-    font-style: normal;
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
 
-.generate-button > div {
-    color: #999;
-    font-size: 10px;
-    font-weight: initial;
-    font-style: normal;
-    text-align: center;
-    margin: 0px 0px 0px 0px;
+h4 span {
+  font-weight: 200;
+  position: relative;
+  padding-bottom: 5px;
 }
 
-.generate-button > i {
-    color: #dda77b;
-    font-size: 1em;
-    background: #fff;
-    border-radius: 100px;
-    border: 4px solid #dda77b;
-    border-width: 4px 4px 4px 4px;
-    padding: 11px 12px 11px 12px;
-    margin: 6px 6px 6px 6px;
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    bottom: -10px;
+h4 span::after {
+  margin-top: 5px !important;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 2px solid rgba(180, 208, 208, 0.54);
+  content: ""
 }
 
-.generate-button > .ld {
-    font-size: initial;
+.success-buttons {
+  margin-top: 20px;
+  font-weight: 100;
 }
 
-.child {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.social ul li {
+  margin: 5px;
+  list-style: none outside none;
+  display: inline-block;
+}
+
+.social {
+  margin-left: -50px;
+  margin-top: 20px;
+}
+
+.social i {
+  width: 40px;
+  height: 40px;
+  background-color: #dcdcdc;
+  color: #fff;
+  font-size: 22px;
+  text-align: center;
+  padding-top: 9px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+}
+
+.social i:hover {
+  color: #fff;
+  text-decoration: none;
+  transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+}
+
+.social .fa-twitter:hover {
+  background: #38A1F3;
+}
+
+.social .fa-tumblr:hover {
+  background: #34526f;
 }

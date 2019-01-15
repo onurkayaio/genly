@@ -4,7 +4,8 @@
     margin: 30px;
 }
 
-.pagination a {
+.pagination button {
+    background-color: transparent;
     color: black;
     float: left;
     padding: 8px 16px;
@@ -14,7 +15,7 @@
     margin: 0 4px;
 }
 
-.pagination a.active {
+.pagination button.active {
     background-color: rgba(180, 208, 208, 0.54);
     color: black;
     border: 1px solid rgba(180, 208, 208, 0.54);

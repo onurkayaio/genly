@@ -1,0 +1,22 @@
+
+.fa-tumblr {
+  color: rgba(180, 208, 208, 0.54);
+}
+
+.fa-sort-amount-up {
+  color: rgba(180, 208, 208, 0.54);
+}
+
+td {
+  font-weight: 200;
+  padding: 10px;
+}
+
+.process-buttons {
+  margin-top: 15px;
+  margin-bottom: -20px;
+}
+
+.right-button{
+  padding-left: 10px;
+}

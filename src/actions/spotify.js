@@ -6,26 +6,26 @@ import {
   GET_USER_SPOTIFY_PROFILE_ERROR,
   POST_USER_SPOTIFY_PLAYLIST,
   POST_USER_SPOTIFY_PLAYLIST_ERROR
-} from "./index";
+} from './index';
 
-import axios from "axios";
-import { getToken } from "./../helpers";
+import axios from 'axios';
+import { getToken } from './../helpers';
 
-const spotify_base_url = "https://api.spotify.com/v1";
-const token = getToken() ? "Bearer " + getToken()["token"] : null; // check the token exists.
+const spotify_base_url = 'http://localhost:8080/spotify/';
+const token = getToken() ? 'Bearer ' + getToken()['token'] : null; // check the token exists.
 
 export function getUserSpotifyProfile() {
   return dispatch => {
     return axios
-      .get(`${spotify_base_url}/me`, {
+      .get(`${ spotify_base_url }/me`, {
         headers: {
-          Authorization: token ? token : "Bearer " + getToken()["token"]
+          'x-access-token': token ? token : 'Bearer ' + getToken()['token']
         }
       })
       .then(data => {
         dispatch({
           type: GET_USER_SPOTIFY_PROFILE,
-          payload: data["data"]
+          payload: data['data']
         });
       })
       .catch(function (error) {
@@ -37,70 +37,43 @@ export function getUserSpotifyProfile() {
   };
 }
 
-export function postUserPlaylist(name, description, isPublic, songs) {
+export function postUserPlaylist(name, description, isPublic, songs, email) {
   return dispatch => {
-    generatePlaylist(name, description, isPublic, songs).then(data => {
-      console.log(data);
-
-      if (data["status"] === 201) {
+    generatePlaylist(name, description, isPublic, songs, email).then(data => {
+      if ( data['status'] === 200 ) {
         dispatch({
           type: POST_USER_SPOTIFY_PLAYLIST,
-          payload: data["data"]
+          payload: data['data']
         });
       } else {
         dispatch({
           type: POST_USER_SPOTIFY_PLAYLIST_ERROR,
-          payload: "an error occured"
+          payload: 'an error occured'
         });
       }
     });
   };
 }
 
-function generatePlaylist(name, description, isPublic, songs) {
+function generatePlaylist(name, description, isPublic, songs, email) {
+  console.log(token ? token : 'Bearer ' + getToken()['token']);
   return axios
     .post(
-      `${spotify_base_url}/me/playlists`,
-      JSON.stringify({
+      `${ spotify_base_url }/playlist?blogName=${ name }&email=${ email }`,
+      {
         name: name,
         description: description,
-        public: isPublic
-      }),
+        public: isPublic,
+        tracks: songs
+      },
       {
         headers: {
-          Authorization: token
+          'x-access-token': token ? token : 'Bearer ' + getToken()['token']
         }
       }
     )
     .then(data => {
-      let songUrls = songs.map(song => song["uri"]).join(",");
-
-      return axios.post(
-        `${spotify_base_url}/playlists/${
-          data["data"]["id"]
-          }/tracks/?position=0&uris=${songUrls}`,
-        null,
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      );
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-
-export function getTracks(trackIds) {
-  return axios
-    .get(`${spotify_base_url}/tracks?ids=${trackIds}`, {
-      headers: {
-        Authorization: token ? token : "Bearer " + getToken()["token"]
-      }
-    })
-    .then(data => {
-      return data["data"];
+      return data;
     })
     .catch(function (error) {
       console.log(error);

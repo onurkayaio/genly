@@ -1,0 +1,50 @@
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color),
+  inset 0.3em 0.3em 0 0 var(--color);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 0 var(--hover),
+    inset 6em 3.5em 0 0 var(--hover);
+  }
+}
+
+$colors: (
+        offset:rgba(180, 208, 208, 0.54)
+);
+
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: rgba(180, 208, 208, 0.54);
+    --hover: rgba(180, 208, 208, 0.54);
+  }
+}
+
+.process-button {
+  min-width: 200px;
+  color: black;
+  transition: 0.5s;
+  font-weight: 200;
+  border-radius: 1px;
+
+  &:hover,
+  &:focus {
+    border-color: rgba(180, 208, 208, 0.54);
+    color: black;
+    font-weight: 200;
+  }
+}
+
+.process-button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.buttons {
+  justify-content: center;
+  display: flex;
+}

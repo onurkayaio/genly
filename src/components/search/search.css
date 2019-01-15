@@ -4,7 +4,7 @@ input:focus {
 
 input.question {
   font-size: 40px;
-  font-weight: 300;
+  font-weight: 200;
   border-radius: 2px;
   margin: 0;
   border: none;
@@ -52,7 +52,7 @@ input.question:invalid {
 }
 
 input.question + label > span {
-  font-weight: 300;
+  font-weight: 200;
   margin: 0;
   position: absolute;
   color: #8f8f8f;

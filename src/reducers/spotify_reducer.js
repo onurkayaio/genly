@@ -7,7 +7,7 @@ import {
   POST_USER_SPOTIFY_PLAYLIST_CLEAR,
   POST_USER_SPOTIFY_PLAYLIST_ERROR,
   POST_USER_SPOTIFY_PLAYLIST_ERROR_CLEAR
-} from "./../actions/index";
+} from './../actions/index';
 
 const initialState = {
   profile: null,

@@ -124,3 +124,7 @@ header .header-right .lines {
     display: none;
   }
 }
+
+.user-name {
+  font-weight: 300;
+}

@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // helper.
-import { parseQueryString, getToken } from "../../helpers";
+import { parseQueryString, getToken } from '../../helpers';
 
 // enums.
-import { spotify_token_scopes } from "../../enums";
+import { spotify_token_scopes } from '../../enums';
 
 // css.
-import "./login.css";
+import './login.css';
 
-const spotify_client_id = process.env.REACT_APP_SPOTIFY_PUBLIC_CLIENT_ID;
-const spotify_redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+const spotify_client_id = 'b8d858330e0e4ab28a6e318a518c694c';
+const spotify_redirect_uri = 'http://localhost:3000/';
 
 class Login extends Component {
   login() {
     window.location = [
-      "https://accounts.spotify.com/authorize",
+      'https://accounts.spotify.com/authorize',
       `?client_id=${spotify_client_id}`,
       `&redirect_uri=${spotify_redirect_uri}`,
       `&scope=${spotify_token_scopes}`,
-      "&response_type=token",
-      "&show_dialog=true"
-    ].join("");
+      '&response_type=token',
+      '&show_dialog=true'
+    ].join('');
   }
 
   loginCallback() {
@@ -43,7 +43,7 @@ class Login extends Component {
 
     // set local storage.
     localStorage.setItem(
-      "token",
+      'token',
       JSON.stringify({
         token: hashObj.access_token,
         expires: new Date(Date.now() + hashObj.expires_in * 1000)
@@ -51,7 +51,7 @@ class Login extends Component {
     );
 
     // clear location hash.
-    window.location.hash = "";
+    window.location.hash = '';
   }
 
   buttonClick(e) {
