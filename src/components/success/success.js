@@ -51,7 +51,7 @@ class Success extends Component {
               </button>
               <button
                 onClick={ this.openPlaylist }
-                className="process-button offset "
+                className="orange-button offset "
               >
                 open playlist
               </button>

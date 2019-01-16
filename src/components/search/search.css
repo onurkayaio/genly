@@ -21,7 +21,7 @@ input.question + label {
   white-space: nowrap;
   padding: 0;
   margin: 0;
-  width: 50%;
+  width: 40%;
   border-top: 1px solid #dda77b;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
@@ -29,7 +29,7 @@ input.question + label {
 }
 
 input.question:focus + label {
-  width: 50%;
+  width: 45%;
 }
 
 input.question:focus {
@@ -104,7 +104,6 @@ input.question:invalid ~ input[type="submit"] {
 }
 
 .search-componenet {
-  padding-left: 8vw;
   padding-top: 12vw;
 }
 
@@ -129,3 +128,34 @@ input.question:invalid ~ input[type="submit"] {
     padding-top: 20vw;
   }
 }
+
+.search-info-list {
+  margin-top: 100px;
+  margin-left: -15px;
+}
+
+.search-info-list ul li {
+  background-color: transparent;
+  border: 0 none;
+  padding-top: 15px;
+  font-weight: 200;
+}
+
+.fa-check {
+  color: #FFD6B4;
+}
+
+.search-info-list span::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  border-bottom: 2px solid rgba(180, 208, 208, 0.54);
+  content: ""
+}
+
+.fa-check:before {
+  margin-right: 15px;
+}
+

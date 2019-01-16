@@ -10,22 +10,23 @@
 }
 
 $colors: (
-        offset:rgba(180, 208, 208, 0.54)
+        offset:rgba(180, 208, 208, 0.54),
+        offset-2: #FFD6B4
 );
 
-@each $button, $color in $colors {
-  .#{$button} {
-    --color: rgba(180, 208, 208, 0.54);
-    --hover: rgba(180, 208, 208, 0.54);
-  }
-}
-
 .process-button {
+  --color: rgba(180, 208, 208, 0.54);
+  --hover: rgba(180, 208, 208, 0.54);
   min-width: 200px;
   color: black;
   transition: 0.5s;
-  font-weight: 200;
+  font-weight: 300;
   border-radius: 1px;
+  background: none;
+  border: 2px solid;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
 
   &:hover,
   &:focus {
@@ -35,16 +36,56 @@ $colors: (
   }
 }
 
-.process-button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 1em 2em;
-}
-
 .buttons {
   justify-content: center;
   display: flex;
+}
+
+.orange-button {
+  --color: #FFD6B4;
+  --hover: #FFD6B4;
+  min-width: 200px;
+  color: black;
+  transition: 0.5s;
+  font-weight: 300;
+  border-radius: 1px;
+  background: none;
+  border: 2px solid;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+
+  &:hover,
+  &:focus {
+    border-color: #FFD6B4;
+    color: black;
+    font-weight: 200;
+  }
+}
+
+.login-button {
+  --color: #1db954;
+  --hover: #1db954;
+  min-width: 200px;
+  color: black;
+  transition: 0.5s;
+  font-weight: 200;
+  background: none;
+  border: 2px solid;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  border-radius: 1.875rem;
+  font-size: 20px;
+
+  &:hover,
+  &:focus {
+    border-color: #1db954;
+    color: white;
+    font-weight: 200;
+  }
+}
+
+.fa-spotify {
+  padding-right: 10px;
 }

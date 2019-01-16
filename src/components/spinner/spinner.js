@@ -18,7 +18,7 @@ class Spinner extends Component {
     }, 5000);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     clearInterval(this.timeout);
   }
 

@@ -187,7 +187,7 @@ class Playlist extends Component {
                     </button>
                     <button
                       onClick={ this.handleGeneratePlaylist }
-                      className="process-button offset "
+                      className="orange-button offset "
                     >
                       save playlist
                     </button>

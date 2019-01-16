@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import connect from "react-redux/es/connect/connect";
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import connect from 'react-redux/es/connect/connect';
 
 // css.
-import "./search.css";
+import './search.css';
 
 // actions.
-import { getUserBlogPosts } from "../../actions/tumblr";
+import { getUserBlogPosts } from '../../actions/tumblr';
 
 class Search extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Search extends Component {
   }
 
   handleChange(event) {
-    if (event.which === 13 && event.currentTarget.value) {
+    if ( event.which === 13 && event.currentTarget.value ) {
       this.props.getUserBlogPosts(event.currentTarget.value);
     }
   }
@@ -25,26 +25,52 @@ class Search extends Component {
 
     return (
       <div>
-        {!isFetched ? (
+        { !isFetched ? (
           <div>
-            {tracks.length === 0 ? (
-              <div className="search-componenet">
-                <input
-                  onKeyPress={this.handleChange}
-                  type="input"
-                  name="name"
-                  className="question"
-                  id="nme"
-                  required
-                  autoComplete="off"
-                />
-                <label htmlFor="nme">
-                  <span>What's the blog name?</span>
-                </label>
+            { tracks.length === 0 ? (
+              <div className="container">
+                <div className="search-componenet">
+                  <input
+                    onKeyPress={ this.handleChange }
+                    type="input"
+                    name="name"
+                    className="question"
+                    id="nme"
+                    required
+                    autoComplete="off"
+                  />
+                  <label htmlFor="nme">
+                    <span>What's the blog name?</span>
+                  </label>
+                </div>
+                <div className="search-info-list">
+                  <div className="col-md-5">
+                    <ul className="list-group">
+                      <li className="list-group-item">
+                        <i className="fas fa-check"/>
+                        <span>
+                          The number of music may differ from the blog.
+                        </span>
+                      </li>
+                      <li className="list-group-item">
+                        <i className="fas fa-check"/>
+                        <span>
+                          The blog visibility must be open to everyone.
+                        </span>
+                      </li>
+                      <li className="list-group-item">
+                        <i className="fas fa-check"/>
+                        <span>
+                          Generate playlist by only the list of spotify posts.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            ) : null}
+            ) : null }
           </div>
-        ) : null}
+        ) : null }
       </div>
     );
   }
