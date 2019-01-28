@@ -17,26 +17,26 @@ class Login extends Component {
   login() {
     window.location = [
       'https://accounts.spotify.com/authorize',
-      `?client_id=${spotify_client_id}`,
-      `&redirect_uri=${spotify_redirect_uri}`,
-      `&scope=${spotify_token_scopes}`,
+      `?client_id=${ spotify_client_id }`,
+      `&redirect_uri=${ spotify_redirect_uri }`,
+      `&scope=${ spotify_token_scopes }`,
       '&response_type=token',
       '&show_dialog=true'
     ].join('');
   }
 
   loginCallback() {
-    if (getToken()) return true;
+    if ( getToken() ) return true;
     else this.setToken();
   }
 
   loggedInStatus() {
-    if (getToken()) return true;
+    if ( getToken() ) return true;
     else return false;
   }
 
   setToken() {
-    if (!window.location.hash.length) return;
+    if ( !window.location.hash.length ) return;
 
     // hashObj => access_token, expires_in, token_type
     const hashObj = parseQueryString(window.location.hash);
@@ -67,26 +67,59 @@ class Login extends Component {
     return (
       <div>
         <div>
-          {this.loggedInStatus() ? (
+          { this.loggedInStatus() ? (
             <div>
-              <Redirect to="/dashboard" />
+              <Redirect to="/dashboard"/>
             </div>
           ) : (
-            <div className="login-component">
-              <h1 className="home-logo">g e n l y</h1>
-              <h4>generate a spotify playlist by your blog posts.</h4>
-              <div className="home-text">
-                <button
-                  type="button"
-                  className="login-button btn"
-                  onClick={this.buttonClick.bind(this)}
-                >
-                  <i className="fab fa-spotify fa-lg" />
-                  Login with Spotify
-                </button>
+            <div>
+              <div className="more-about">
+                <ul>
+                  <li>
+                    Privacy
+                  </li>
+                  |
+                  <li>
+                    Feedback
+                  </li>
+                </ul>
+              </div>
+              <div className="parent">
+                <div>
+                  <img
+                    alt=""
+                    src={ require('../../images/login-logo.png') }
+                    className="homepage-image"
+                  />
+                </div>
+                <div className="homepage-info">
+                  genly generates spotify playlists based on tumblr blogs.
+                </div>
+                <div className="homepage-button">
+                  <button
+                    type="button"
+                    className="login-button btn"
+                    onClick={ this.buttonClick.bind(this) }
+                  >
+                    <i className="fab fa-spotify fa-lg"/>
+                    Login with Spotify
+                  </button>
+                  <p className="no-spotify-span">
+                    <a
+                      href="google.com.tr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      no spotify yet? click here.
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <div className='made-with-love'>
+                made with <span className="love">♥</span> by <a href="">onur kaya.</a>
               </div>
             </div>
-          )}
+          ) }
         </div>
       </div>
     );

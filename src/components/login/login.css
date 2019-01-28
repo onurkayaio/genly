@@ -1,39 +1,15 @@
-.login-component {
-  padding-left: 8vw;
-  padding-top: 14vw;
-}
-
-.login-component h1 {
-  font-weight: bold;
-  font-size: 5rem;
-  color: #dda77b;
-}
-
-.login-component h4 {
-  padding-top: 1vw;
-  color: #dda77b;
-}
-
-.home-text {
-  padding-top: 10vw;
-}
-
-.home-info {
-  padding-top: 1vw;
-  font-style: italic;
-  font-size: 0.9em;
-}
-
 .login-button {
-  padding: 0.8rem;
   background-color: transparent;
   letter-spacing: 0.1rem;
   cursor: pointer;
   text-transform: uppercase;
-  border-radius: 1.875rem;
   color: #1db954;
-  border: 3px solid #1db954 !important;
-  font-weight: bold;
+  border: 2px solid #1db954 !important;
+  font-weight: 300
+}
+
+.homepage-button {
+  margin-top: -5px;
 }
 
 .login-button:hover {
@@ -45,16 +21,87 @@
   padding-right: 10px;
 }
 
-@media only screen and (max-width: 767px) {
-  .login-component h1 {
-    font-size: 3em;
-  }
+.parent {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-  .login-component h2 {
-    font-size: 2em;
+.homepage-info {
+  text-align: center;
+  font-weight: 200;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.homepage-image {
+  max-width: 300px;
+}
+
+.no-spotify-span {
+  font-style: italic;
+  font-weight: 100;
+  font-size: 13px;
+}
+
+.made-with-love {
+  position: absolute;
+  bottom: 15px;
+  left: 0%;
+  right: 0%;
+  text-align: center;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.love {
+  display: inline-block;
+  position: relative;
+  top: .2em;
+  font-size: 1.4em;
+  color: #e74c3c;
+  -webkit-transform: scale(.9);
+  -moz-transform: scale(.9);
+  transform: scale(.9);
+  -webkit-animation: love .5s infinite linear alternate-reverse;
+  -moz-animation: love .5s infinite linear alternate-reverse;
+  animation: love .5s infinite linear alternate-reverse;
+}
+
+.homepage-info a {
+  padding: 20px;
+}
+
+@-webkit-keyframes love {
+  to {
+    -webkit-transform: scale(1.2);
   }
 }
 
-.home-spotify-icon{
-  height: 10pc;
+@-moz-keyframes love {
+  to {
+    -moz-transform: scale(1.2);
+  }
+}
+
+@keyframes love {
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.more-about {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.more-about ul li {
+  display: inline;
+  padding: 10px;
 }

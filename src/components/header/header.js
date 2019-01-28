@@ -29,7 +29,7 @@ class Header extends Component {
         <header className="header">
           <div className="logo">
             <Link to="/dashboard">
-              <img alt="" src={ require('./../../images/dummy-logo.png') }/>
+              <img alt="" src={ require('./../../images/header.png') }/>
             </Link>
           </div>
           <div className="login">
