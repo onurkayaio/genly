@@ -44,7 +44,8 @@ input.question:valid + label > span {
 }
 
 input.question:valid + label {
-  border-color: green;
+  border-color: rgba(180, 208, 208, 0.54);
+  border-bottom: 1px solid rgba(180, 208, 208, 0.54);
 }
 
 input.question:invalid {

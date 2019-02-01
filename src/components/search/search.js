@@ -6,12 +6,16 @@ import connect from 'react-redux/es/connect/connect';
 import './search.css';
 
 // actions.
-import { getUserBlogPosts } from '../../actions/tumblr';
+import { getUserBlogPosts, getPopularBlogs } from '../../actions/tumblr';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getPopularBlogs();
   }
 
   handleChange(event) {
@@ -83,7 +87,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserBlogPosts }, dispatch);
+  return bindActionCreators({ getUserBlogPosts, getPopularBlogs }, dispatch);
 }
 
 export default connect(

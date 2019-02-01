@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ProgressiveImage from 'react-progressive-image-loading';
+
 // css.
 import './track.css';
 
@@ -30,7 +32,11 @@ const Track = ({ currentTrackId, playing, track, stopAudio, playAudio }) => {
             </div>
           </div>
         ) : null }
-        <img src={ track.album.images[0].url } alt=""/>
+        <ProgressiveImage
+          preview="https://picsum.photos/458/354?image=0&blur"
+          src={track.album.images[0].url}
+          render={ (src, style) => <img src={ track.album.images[0].url } style={ style }/> }
+        />
         <div className="track-name">
           <p>{ track.name }</p>
         </div>

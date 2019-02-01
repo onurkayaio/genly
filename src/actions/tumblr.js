@@ -5,7 +5,7 @@ import {
   GET_USER_TUMBLR_POSTS_ERROR,
   GET_USER_TUMBLR_POSTS_ERROR_CLEAR,
   REQUEST_ACTIVE,
-  POST_USER_SPOTIFY_PLAYLIST_CLEAR
+  POST_USER_SPOTIFY_PLAYLIST_CLEAR, GET_POPULAR_BLOGS
 } from './../actions/index';
 
 import { getToken } from './../helpers';
@@ -23,7 +23,7 @@ export function getUserBlogPosts(blogName) {
 
     getTracksOfPosts(blogName).then(data => {
       console.log(data);
-      if (data['status'] === 200) {
+      if ( data['status'] === 200 ) {
         dispatch({
           type: REQUEST_ACTIVE,
           payload: false
@@ -48,7 +48,7 @@ export function getUserBlogPosts(blogName) {
 
 function getTracksOfPosts(blogName) {
   return axios
-    .get(`${tumblr_base_url}/posts?blogName=${blogName}`, {
+    .get(`${ tumblr_base_url }/posts?blogName=${ blogName }`, {
       headers: {
         'x-access-token': token ? token : 'Bearer ' + getToken()['token']
       }
@@ -74,5 +74,21 @@ export function clearPostsAndErrors() {
     dispatch({
       type: POST_USER_SPOTIFY_PLAYLIST_CLEAR
     });
+  };
+}
+
+export function getPopularBlogs() {
+  return dispatch => {
+    axios.get(`${ tumblr_base_url }/blogs/populars`)
+      .then(data => {
+        console.log(data);
+        dispatch({
+          type: GET_POPULAR_BLOGS,
+          payload: data['data']
+        });
+      }).catch(error => {
+        return error.response;
+      }
+    );
   };
 }

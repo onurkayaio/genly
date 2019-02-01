@@ -102,9 +102,11 @@ class Playlist extends Component {
 
     const renderTracks = currentTracks.map(track => {
       return (
-        <div className="col-md-2 col-6">
+        <div
+          className="col-md-2 col-6"
+          key={ track.id + track.uri }
+        >
           <Track
-            key={ track.id + track.uri }
             stopAudio={ this.stopAudio }
             playAudio={ this.playAudio }
             currentTrackId={ currentTrackId }
@@ -146,6 +148,7 @@ class Playlist extends Component {
       if ( availablePages.indexOf(number) > -1 ) {
         return (
           <Pagination
+            key={ number }
             number={ number }
             currentPage={ currentPage }
             handlePagination={ this.handlePagination }
@@ -165,7 +168,7 @@ class Playlist extends Component {
                   <table>
                     <tbody>
                     <tr>
-                      <td><i className="fab fa-tumblr" style={ { 'paddingRight': '5px' } }/> blog:</td>
+                      <td><i className="fab playlist-info-tumblr-icon fa-tumblr" style={ { 'paddingRight': '5px' } }/> blog:</td>
                       <td className="float-right">{ profile.name }.tumblr.com</td>
                     </tr>
                     <tr>
@@ -214,7 +217,7 @@ class Playlist extends Component {
         ) : null }
         <Success/>
 
-        { tracks.length > 0 && !playlist['data'] ? (<Footer isFixed={ false }/>) :
+        { currentTracks.length > 6 && !playlist['data'] ? (<Footer isFixed={ false }/>) :
           <Footer isFixed={ true }/> }
       </div>
     );

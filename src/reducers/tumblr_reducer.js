@@ -3,14 +3,16 @@ import {
   GET_USER_TUMBLR_POSTS_CLEAR,
   GET_USER_TUMBLR_POSTS_ERROR,
   GET_USER_TUMBLR_POSTS_ERROR_CLEAR,
-  REQUEST_ACTIVE
+  REQUEST_ACTIVE,
+  GET_POPULAR_BLOGS
 } from './../actions/index';
 
 const initialState = {
   isFetched: false,
   tracks: [],
   error: null,
-  profile: null
+  profile: null,
+  populars: []
 };
 
 export default function (state = initialState, action) {
@@ -29,6 +31,8 @@ export default function (state = initialState, action) {
       return { ...state, error: null };
     case REQUEST_ACTIVE:
       return { ...state, isFetched: action.payload };
+    case GET_POPULAR_BLOGS:
+      return { ...state, populars: action.payload };
     default:
       return state;
   }

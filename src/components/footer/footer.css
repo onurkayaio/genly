@@ -1,18 +1,40 @@
 #fixed-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: rgba(180, 208, 208, 0.54);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: rgba(180, 208, 208, 0.54);
 }
 
 #not-fixed-footer {
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: rgba(180, 208, 208, 0.54);
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: rgba(180, 208, 208, 0.54);
+}
+
+#fixed-footer ul {
+  margin-bottom: -1rem;
+  margin-left: -4rem;
+}
+
+#not-fixed-footer ul {
+  margin-left: -4rem;
+  margin-bottom: -1rem;
+}
+
+#fixed-footer ul li {
+  font-weight: 200;
+  display: inline;
+  padding: 10px;
+}
+
+#not-fixed-footer ul li {
+  font-weight: 200;
+  display: inline;
+  padding: 10px;
 }

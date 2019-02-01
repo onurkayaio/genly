@@ -80,6 +80,10 @@ class Login extends Component {
                   </li>
                   |
                   <li>
+                    Roadmap
+                  </li>
+                  |
+                  <li>
                     Feedback
                   </li>
                 </ul>
@@ -105,18 +109,20 @@ class Login extends Component {
                     Login with Spotify
                   </button>
                   <p className="no-spotify-span">
-                    <a
-                      href="google.com.tr"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      no spotify yet? click here.
-                    </a>
+
+                    no spotify yet? click <a
+                    href="https://www.spotify.com/tr/signup/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >here.
+                  </a>
                   </p>
                 </div>
               </div>
               <div className='made-with-love'>
-                made with <span className="love">♥</span> by <a href="">onur kaya.</a>
+                made with <span className="love">♥</span> by <a href="https://www.linkedin.com/in/onurkayaio/"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer">onur kaya.</a>
               </div>
             </div>
           ) }

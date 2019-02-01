@@ -16,7 +16,7 @@ tr {
   border-bottom: 2px solid rgba(180, 208, 208, 0.54);
 }
 
-.fa-tumblr {
+.playlist-info-tumblr-icon {
   color: rgba(180, 208, 208, 0.54);
 }
 
@@ -34,6 +34,6 @@ td {
   margin-bottom: -20px;
 }
 
-.right-button{
+.right-button {
   padding-left: 10px;
 }
