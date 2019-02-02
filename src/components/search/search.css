@@ -8,7 +8,7 @@ input.question {
   border-radius: 2px;
   margin: 0;
   border: none;
-  width: 50%;
+  width: 100%;
   background: rgba(0, 0, 0, 0);
   transition: padding-top 0.2s ease, margin-top 0.2s ease;
   overflow-x: hidden;
@@ -21,7 +21,7 @@ input.question + label {
   white-space: nowrap;
   padding: 0;
   margin: 0;
-  width: 40%;
+  width: 80%;
   border-top: 1px solid #dda77b;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
@@ -29,7 +29,7 @@ input.question + label {
 }
 
 input.question:focus + label {
-  width: 45%;
+  width: 90%;
 }
 
 input.question:focus {

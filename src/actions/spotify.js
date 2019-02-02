@@ -56,7 +56,6 @@ export function postUserPlaylist(name, description, isPublic, songs, email) {
 }
 
 function generatePlaylist(name, description, isPublic, songs, email) {
-  console.log(token ? token : 'Bearer ' + getToken()['token']);
   return axios
     .post(
       `${ spotify_base_url }/playlist?blogName=${ name }&email=${ email }`,

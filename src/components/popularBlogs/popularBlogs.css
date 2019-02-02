@@ -1,0 +1,15 @@
+.popular-blogs-table {
+  border: 1px solid #dda77b;
+}
+
+.popular-blogs-table tr th {
+  font-weight: 200;
+  min-width: 100%;
+  padding: 15px;
+  border-bottom: 1px solid #dda77b;
+}
+
+.popular-blogs-table .blog-name {
+  margin-left: 20px;
+  font-weight: 200;
+}

@@ -22,7 +22,7 @@ export function getUserBlogPosts(blogName) {
     });
 
     getTracksOfPosts(blogName).then(data => {
-      console.log(data);
+      console.log(data['data']);
       if ( data['status'] === 200 ) {
         dispatch({
           type: REQUEST_ACTIVE,
@@ -81,7 +81,6 @@ export function getPopularBlogs() {
   return dispatch => {
     axios.get(`${ tumblr_base_url }/blogs/populars`)
       .then(data => {
-        console.log(data);
         dispatch({
           type: GET_POPULAR_BLOGS,
           payload: data['data']

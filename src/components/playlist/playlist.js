@@ -165,10 +165,12 @@ class Playlist extends Component {
             <div className="info-container">
               <div className="row buttons">
                 <div className="col-md-6 ">
-                  <table>
+                  <table className="playlist-info">
                     <tbody>
                     <tr>
-                      <td><i className="fab playlist-info-tumblr-icon fa-tumblr" style={ { 'paddingRight': '5px' } }/> blog:</td>
+                      <td><i className="fab playlist-info-tumblr-icon fa-tumblr"
+                             style={ { 'paddingRight': '5px' } }/> blog:
+                      </td>
                       <td className="float-right">{ profile.name }.tumblr.com</td>
                     </tr>
                     <tr>
@@ -225,7 +227,6 @@ class Playlist extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     tumblr: state.tumblr,
     spotify: state.spotify
