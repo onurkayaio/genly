@@ -9,10 +9,6 @@ import './popularBlogs.css';
 import { getPopularBlogs, getUserBlogPosts } from '../../actions/tumblr';
 
 class PopularBlogs extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getPopularBlogs();
   }
@@ -20,17 +16,18 @@ class PopularBlogs extends Component {
   createTable = () => {
     return this.props.tumblr.populars.map(function (value) {
       return (
-        <tr key={ value._id }>
+        <tr key={ value.blog }>
           <th>
-            { value._id }.tumblr.com
+            { value.blog }.tumblr.com
           </th>
           <th>
             { value.count } times
           </th>
           <th>
-            <a onClick={ () => this.props.getUserBlogPosts(value._id) }>
+            <button className="btn" style={ { 'background': 'transparent' } }
+                    onClick={ () => this.props.getUserBlogPosts(value.blog) }>
               <i className="fas fa-angle-double-right"/>
-            </a>
+            </button>
           </th>
         </tr>
       );
@@ -40,9 +37,14 @@ class PopularBlogs extends Component {
   render() {
 
     return (
-      <div className="info-container">
+      <div className="popular-container">
+        <p className="popular-blogs-head">
+          Popular Blogs
+        </p>
         <table className="popular-blogs-table">
+          <tbody>
           { this.createTable() }
+          </tbody>
         </table>
       </div>
     );

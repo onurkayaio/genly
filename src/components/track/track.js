@@ -34,8 +34,9 @@ const Track = ({ currentTrackId, playing, track, stopAudio, playAudio }) => {
         ) : null }
         <ProgressiveImage
           preview="https://picsum.photos/458/354?image=0&blur"
-          src={track.album.images[0].url}
-          render={ (src, style) => <img src={ track.album.images[0].url } style={ style }/> }
+          src={ track.album.images[0].url }
+          render={ (src, style) => <img alt={ track.artists[0].name } src={ track.album.images[0].url }
+                                        style={ style }/> }
         />
         <div className="track-name">
           <p>{ track.name }</p>

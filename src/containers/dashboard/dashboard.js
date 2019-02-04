@@ -14,7 +14,6 @@ import './../../style.scss';
 import { getToken } from './../../helpers';
 
 import './dashboard.css';
-import PopularBlogs from '../../components/popularBlogs/popularBlogs';
 
 class Dashboard extends Component {
   render() {

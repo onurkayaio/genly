@@ -1,3 +1,7 @@
+.popular-container {
+  margin-top: -27px;
+}
+
 .popular-blogs-table {
   border: 1px solid #dda77b;
 }
@@ -12,4 +16,11 @@
 .popular-blogs-table .blog-name {
   margin-left: 20px;
   font-weight: 200;
+}
+
+.popular-blogs-head {
+  text-align: center;
+  margin-left: -10px;
+  font-weight: 300;
+  font-size: 20px;
 }

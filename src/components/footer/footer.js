@@ -13,10 +13,6 @@ const Footer = ({ isFixed }) => {
           </li>
           |
           <li>
-            Roadmap
-          </li>
-          |
-          <li>
             Feedback
           </li>
         </ul>

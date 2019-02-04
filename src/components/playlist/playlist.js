@@ -219,8 +219,6 @@ class Playlist extends Component {
         ) : null }
         <Success/>
 
-        { currentTracks.length > 6 && !playlist['data'] ? (<Footer isFixed={ false }/>) :
-          <Footer isFixed={ true }/> }
       </div>
     );
   }

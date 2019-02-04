@@ -1,3 +1,7 @@
+.login-container {
+  color: #212529 !important;
+}
+
 .login-button {
   background-color: transparent;
   letter-spacing: 0.1rem;
@@ -5,16 +9,25 @@
   text-transform: uppercase;
   color: #1db954;
   border: 2px solid #1db954 !important;
-  font-weight: 300
+  font-weight: 300;
+  font-size: 16px !important;
 }
 
 .homepage-button {
   margin-top: -5px;
 }
 
+.homepage-button .fa-spotify {
+  color: #1db954;
+}
+
 .login-button:hover {
   color: #fff;
   background: #1db954;
+}
+
+.login-button:hover .fa-spotify {
+  color: #fff;
 }
 
 .fa-spotify {
@@ -32,12 +45,13 @@
 
 .homepage-info {
   text-align: center;
-  font-weight: 200;
+  font-weight: 300;
   margin-top: 60px;
   margin-bottom: 20px;
 }
 
 .homepage-image {
+  margin-bottom: -20px;
   max-width: 300px;
 }
 

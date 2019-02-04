@@ -66,7 +66,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="login-container">
           { this.loggedInStatus() ? (
             <div>
               <Redirect to="/dashboard"/>
@@ -80,10 +80,6 @@ class Login extends Component {
                   </li>
                   |
                   <li>
-                    Roadmap
-                  </li>
-                  |
-                  <li>
                     Feedback
                   </li>
                 </ul>
@@ -92,7 +88,7 @@ class Login extends Component {
                 <div>
                   <img
                     alt=""
-                    src={ require('../../images/login-logo.png') }
+                    src={ require('../../images/logo.png') }
                     className="homepage-image"
                   />
                 </div>
