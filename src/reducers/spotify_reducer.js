@@ -6,13 +6,15 @@ import {
   POST_USER_SPOTIFY_PLAYLIST,
   POST_USER_SPOTIFY_PLAYLIST_CLEAR,
   POST_USER_SPOTIFY_PLAYLIST_ERROR,
-  POST_USER_SPOTIFY_PLAYLIST_ERROR_CLEAR
+  POST_USER_SPOTIFY_PLAYLIST_ERROR_CLEAR,
+  GET_RECENT_PLAYLISTS
 } from './../actions/index';
 
 const initialState = {
   profile: null,
   playlist: [],
-  error: null
+  error: null,
+  recentPlaylists: []
 };
 
 export default function (state = initialState, action) {
@@ -33,6 +35,8 @@ export default function (state = initialState, action) {
       return { ...state, error: action.payload };
     case POST_USER_SPOTIFY_PLAYLIST_ERROR_CLEAR:
       return { ...state, error: null };
+    case GET_RECENT_PLAYLISTS:
+      return { ...state, recentPlaylists: action.payload};
     default:
       return state;
   }

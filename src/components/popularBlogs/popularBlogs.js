@@ -9,7 +9,7 @@ import './popularBlogs.css';
 import { getPopularBlogs, getUserBlogPosts } from '../../actions/tumblr';
 
 class PopularBlogs extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getPopularBlogs();
   }
 
@@ -36,16 +36,24 @@ class PopularBlogs extends Component {
 
   render() {
 
+    let { tracks, isFetched } = this.props.tumblr;
     return (
-      <div className="popular-container">
-        <p className="popular-blogs-head">
-          Popular Blogs
-        </p>
-        <table className="popular-blogs-table">
-          <tbody>
-          { this.createTable() }
-          </tbody>
-        </table>
+      <div className="col-md-6">
+        { !isFetched && tracks.length === 0 ? (
+          <div className="offset-md-2 col-md-10" style={ { 'marginTop': '150px' } }>
+            <div className="popular-container">
+              <p className="popular-blogs-header">
+                Popular Blogs
+              </p>
+              <table className="popular-blogs-table">
+                <tbody>
+                { this.createTable() }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : null
+        }
       </div>
     );
   }

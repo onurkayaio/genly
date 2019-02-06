@@ -18,9 +18,12 @@
   font-weight: 200;
 }
 
-.popular-blogs-head {
-  text-align: center;
-  margin-left: -10px;
+.popular-blogs-header {
   font-weight: 300;
   font-size: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  background-color: rgba(180, 208, 208, 0.54);
+  letter-spacing: 0.3rem;
+  padding: 10px;
 }

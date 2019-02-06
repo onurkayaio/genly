@@ -14,6 +14,8 @@ import './../../style.scss';
 import { getToken } from './../../helpers';
 
 import './dashboard.css';
+import PopularBlogs from '../../components/popularBlogs/popularBlogs';
+import RecentPlaylists from '../../components/recentPlaylists/recentPlaylists';
 
 class Dashboard extends Component {
   render() {
@@ -22,7 +24,15 @@ class Dashboard extends Component {
         { getToken() ? (
           <div>
             <Header/>
-            <Search/>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
+                  <Search/>
+                </div>
+                <PopularBlogs/>
+                <RecentPlaylists/>
+              </div>
+            </div>
             <Playlist/>
           </div>
         ) : (

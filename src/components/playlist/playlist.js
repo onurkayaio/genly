@@ -219,6 +219,9 @@ class Playlist extends Component {
         ) : null }
         <Success/>
 
+        <Footer isFixed={ false }/>
+
+
       </div>
     );
   }

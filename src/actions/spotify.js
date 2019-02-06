@@ -2,6 +2,7 @@
  * Spofiy.js holds the actions to get/post data between app and spotify API.
  */
 import {
+  GET_RECENT_PLAYLISTS,
   GET_USER_SPOTIFY_PROFILE,
   GET_USER_SPOTIFY_PROFILE_ERROR,
   POST_USER_SPOTIFY_PLAYLIST,
@@ -77,4 +78,19 @@ function generatePlaylist(name, description, isPublic, songs, email) {
     .catch(function (error) {
       console.log(error);
     });
+}
+
+export function getRecentPlaylists() {
+  return dispatch => {
+    axios.get(`${ spotify_base_url }/playlist/popular`)
+      .then(data => {
+        dispatch({
+          type: GET_RECENT_PLAYLISTS,
+          payload: data['data']
+        });
+      }).catch(error => {
+        return error.response;
+      }
+    );
+  };
 }

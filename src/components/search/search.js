@@ -8,6 +8,7 @@ import './search.css';
 // actions.
 import { getUserBlogPosts } from '../../actions/tumblr';
 import PopularBlogs from '../popularBlogs/popularBlogs';
+import RecentPlaylists from '../recentPlaylists/recentPlaylists';
 
 class Search extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Search extends Component {
             { tracks.length === 0 ? (
               <div className="container">
                 <div className="row">
-                  <div className="search-componenet col-md-6">
+                  <div className="search-componenet col-md-12">
                     <div className="col-md-12">
                       <input
                         onKeyPress={ this.handleChange }
@@ -70,9 +71,6 @@ class Search extends Component {
                         </ul>
                       </div>
                     </div>
-                  </div>
-                  <div className="offset-md-1 col-md-5 " style={ { 'marginTop': '150px' } }>
-                    <PopularBlogs/>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,109 @@
+.recent-playlists-container {
+  margin: 80px 15px;
+}
+
+.gallery.box {
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 1%;
+  border: 5px #fff solid;
+}
+
+.gallery .card {
+  position: relative;
+}
+
+.gallery .background, .gallery .column {
+  height: auto;
+  width: auto;
+}
+
+.gallery .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  background-color: #000;
+  -webkit-transition: opacity 0.35s;
+  -o-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.gallery .info,
+.gallery .foot {
+  -webkit-transition: bottom 0.35s;
+  -o-transition: bottom 0.35s;
+  transition: bottom 0.35s;
+}
+
+.gallery .info {
+  position: absolute;
+  bottom: -35px;
+  width: 100%;
+}
+
+.gallery .info h2 a {
+  color: #fff;
+  display: block;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+
+.gallery .info h2 {
+  line-height: 24px;
+  font-size: 18px;
+  padding: 0 10px;
+  font-weight: 400;
+}
+
+.gallery .foot .social {
+  float: right;
+  color: #fff;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.gallery .date {
+  font-weight: 300;
+}
+
+.gallery .fa-spotify {
+  top: 0;
+  left: 0;
+  padding: 10px 10px;
+  position: absolute;
+  color: #fff;
+  font-size: 24px;
+  z-index: 1;
+  transition: font-size 0.35s;
+}
+
+/* All hovers here! */
+.gallery:hover .info,
+.gallery:hover .foot {
+  bottom: 10px;
+}
+
+.gallery:hover .overlay {
+  opacity: 0.5;
+}
+
+.gallery:hover .foot .line {
+  width: 100%;
+}
+
+.gallery:hover .fa-spotify {
+  font-size: 32px;
+}
+
+.recent-playlist-header {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  background-color: rgba(180, 208, 208, 0.54);
+  letter-spacing: 0.3rem;
+  padding: 10px;
+}

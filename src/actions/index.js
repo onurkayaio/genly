@@ -23,5 +23,6 @@ export const GET_USER_TUMBLR_POSTS_ERROR_CLEAR =
 // TODO: maybe we do not need so many actions, check it.
 
 export const GET_POPULAR_BLOGS = 'GET_POPULAR_BLOGS';
+export const GET_RECENT_PLAYLISTS = 'GET_RECENT_PLAYLISTS';
 
 export const REQUEST_ACTIVE = 'REQUEST_ACTIVE';
