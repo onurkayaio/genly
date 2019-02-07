@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // helper.
 import { parseQueryString, getToken } from '../../helpers';
@@ -76,12 +77,16 @@ class Login extends Component {
               <div className="more-about">
                 <ul>
                   <li>
-                    Privacy
+                    <NavLink to='/privacy'>
+                      Privacy
+                    </NavLink>
                   </li>
-                  |
+                  {/*|
                   <li>
-                    Feedback
-                  </li>
+                    <NavLink to='/feedback'>
+                      Feedback
+                    </NavLink>
+                  </li>*/}
                 </ul>
               </div>
               <div className="parent">

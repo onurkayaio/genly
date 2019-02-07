@@ -10,6 +10,8 @@ import storeConfiguration from './store';
 // containers
 import Home from './containers/home/home';
 import Dashboard from './containers/dashboard/dashboard';
+import Privacy from './containers/privacy/privacy';
+import Feedback from './containers/feedback/feedback';
 
 const store = storeConfiguration();
 
@@ -20,6 +22,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={ Home }/>
           <Route exact path="/dashboard" component={ Dashboard }/>
+          <Route exact path="/privacy" component={ Privacy }/>
+          <Route exact path="/feedback" component={ Feedback }/>
         </Switch>
       </div>
     </BrowserRouter>

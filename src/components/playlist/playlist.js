@@ -12,7 +12,6 @@ import './playlist.css';
 // components.
 import Track from '../track/track';
 import Success from '../success/success';
-import Footer from '../footer/footer';
 import Pagination from '../pagination/pagination';
 
 let audio = new Audio();
@@ -92,7 +91,7 @@ class Playlist extends Component {
   }
 
   render() {
-    let { tracks, profile } = this.props.tumblr;
+    let { tracks, profile, isFetched } = this.props.tumblr;
     let { playlist } = this.props.spotify;
     let { currentPage, tracksPerPage, playing, currentTrackId } = this.state;
 
@@ -160,7 +159,7 @@ class Playlist extends Component {
 
     return (
       <div>
-        { tracks.length > 0 && !playlist['data'] ? (
+        { !isFetched && tracks.length > 0 && !playlist['data'] ? (
           <div className="container">
             <div className="info-container">
               <div className="row buttons">
@@ -216,12 +215,9 @@ class Playlist extends Component {
               </div>
             </div>
           </div>
+
         ) : null }
         <Success/>
-
-        <Footer isFixed={ false }/>
-
-
       </div>
     );
   }

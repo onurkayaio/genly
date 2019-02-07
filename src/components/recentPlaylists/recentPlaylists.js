@@ -16,11 +16,11 @@ class RecentPlaylists extends Component {
   renderRecentPlaylists() {
     return this.props.spotify.recentPlaylists.map(function (value) {
       return (
-        <div className="col-md-3 col-6">
+        <div className="col-md-3 col-6" key={ value.playlistId }>
           <div className="box gallery">
             <div className="card">
               <div className="background">
-                <img className="card-img-top" src={ value.cover } alt="Card image cap"/>
+                <img className="card-img-top" src={ value.cover } alt=""/>
 
               </div>
               <a target="_blank"
@@ -30,16 +30,12 @@ class RecentPlaylists extends Component {
               <a target="_blank"
                  rel="noopener noreferrer"
                  href={ value.playlistId }>
-                <i className="fab fa-spotify"></i>
+                <i className="fab fa-spotify"/>
               </a>
-              <a className="thumb" href="#">
+              <a className="thumb" href={ value.playlistId }>
                 <div className="info">
                   <h2>
-                    <a target="_blank"
-                       rel="noopener noreferrer"
-                       href={ value.playlistId }>
-                      { value.blogName }.tumblr.com
-                    </a>
+                    { value.blogName }.tumblr.com
                   </h2>
                 </div>
               </a>
@@ -52,18 +48,21 @@ class RecentPlaylists extends Component {
 
   render() {
     let { tracks, isFetched } = this.props.tumblr;
+    let { playlist } = this.props.spotify;
 
     return (
-      <div className="col-md-12">
-        { !isFetched && tracks.length === 0 ? (
-          <div className="recent-playlists-container">
-
+      <div className="">
+        { !isFetched && playlist.length === 0 ? (
+          <div className="recent-playlists-container"
+               style={ tracks.length > 0 ? {
+                 'marginLeft': '15px',
+                 'marginRight': '15px',
+                 'marginBottom': '80px'
+               } : { 'margin': '80px 15px 80px' } }>
             <h2 className="recent-playlist-header">Recent Playlists</h2>
-
             <div className="row">
               { this.renderRecentPlaylists() }
             </div>
-
           </div>
         ) : null }
       </div>
@@ -72,10 +71,9 @@ class RecentPlaylists extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
-    spotify: state.spotify,
-    tumblr: state.tumblr
+    tumblr: state.tumblr,
+    spotify: state.spotify
   };
 }
 

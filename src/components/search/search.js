@@ -7,8 +7,6 @@ import './search.css';
 
 // actions.
 import { getUserBlogPosts } from '../../actions/tumblr';
-import PopularBlogs from '../popularBlogs/popularBlogs';
-import RecentPlaylists from '../recentPlaylists/recentPlaylists';
 
 class Search extends Component {
   constructor(props) {

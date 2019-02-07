@@ -6,7 +6,7 @@ import {
   GET_USER_SPOTIFY_PROFILE,
   GET_USER_SPOTIFY_PROFILE_ERROR,
   POST_USER_SPOTIFY_PLAYLIST,
-  POST_USER_SPOTIFY_PLAYLIST_ERROR
+  POST_USER_SPOTIFY_PLAYLIST_ERROR, REQUEST_ACTIVE
 } from './index';
 
 import axios from 'axios';
@@ -40,6 +40,10 @@ export function getUserSpotifyProfile() {
 
 export function postUserPlaylist(name, description, isPublic, songs, email) {
   return dispatch => {
+    dispatch({
+      type: REQUEST_ACTIVE,
+      payload: true
+    });
     generatePlaylist(name, description, isPublic, songs, email).then(data => {
       if ( data['status'] === 200 ) {
         dispatch({
@@ -52,6 +56,11 @@ export function postUserPlaylist(name, description, isPublic, songs, email) {
           payload: 'an error occured'
         });
       }
+
+      dispatch({
+        type: REQUEST_ACTIVE,
+        payload: false
+      });
     });
   };
 }
