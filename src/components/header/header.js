@@ -38,10 +38,10 @@ class Header extends Component {
                 spotify.profile ? spotify.profile.display_name : null
                 }` }</div>
               <div className="logout">
-                <a href="/logout" className="logout-url" style={ { 'marginRight': '5px' } }>
+                {/*<a href="/logout" className="logout-url" style={ { 'marginRight': '5px' } }>
                   Share
                 </a>
-                |
+                |*/}
                 <Link onClick={ this.logout } className="logout-url" to="/" style={ { 'marginLeft': '5px' } }>
                   Logout
                 </Link>

@@ -74,7 +74,6 @@
 .love {
   display: inline-block;
   position: relative;
-  top: .2em;
   font-size: 1.4em;
   color: #e74c3c;
   -webkit-transform: scale(.9);

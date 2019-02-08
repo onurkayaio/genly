@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { getToken } from './../helpers';
 
-const spotify_base_url = 'http://localhost:8080/spotify/';
+const spotify_base_url = 'https://genly-226908.appspot.com/spotify/';
 const token = getToken() ? 'Bearer ' + getToken()['token'] : null; // check the token exists.
 
 export function getUserSpotifyProfile() {

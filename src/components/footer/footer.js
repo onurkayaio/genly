@@ -3,6 +3,7 @@ import connect from 'react-redux/es/connect/connect';
 
 // css.
 import './footer.css';
+import { NavLink } from 'react-router-dom';
 
 class Footer extends Component {
   render() {
@@ -16,7 +17,9 @@ class Footer extends Component {
             <div className="container">
               <ul className="float-left">
                 <li>
-                  Privacy
+                  <NavLink to="/privacy">
+                    Privacy
+                  </NavLink>
                 </li>
                 {/*|
           <li>
@@ -24,7 +27,7 @@ class Footer extends Component {
           </li>*/ }
               </ul>
 
-              <div className="float-right">
+              {/*<div className="float-right">
                 <ul>
                   <li>
                     Follow Us:
@@ -39,7 +42,7 @@ class Footer extends Component {
                       <i className="fab fa-twitter"/>
                     </a>
                   </li>
-                  <li>
+                  <li>çıkı
                     <a
                       href="http://localhost:3000/dashboard"
                       title="github"
@@ -50,6 +53,13 @@ class Footer extends Component {
                     </a>
                   </li>
                 </ul>
+              </div>*/ }
+              <div className="float-right">
+                <div className=''>
+                  made with <span className="love">♥</span> by <a href="https://www.linkedin.com/in/onurkayaio/"
+                                                                  target="_blank"
+                                                                  rel="noopener noreferrer">onur kaya.</a>
+                </div>
               </div>
             </div>
           </div>
