@@ -1,5 +1,5 @@
 /**
- * Spofiy.js holds the actions to get/post data between app and spotify API.
+ * Spofify.js holds the actions to get/post data between app and spotify API.
  */
 import {
   GET_RECENT_PLAYLISTS,
@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { getToken } from './../helpers';
 
-const spotify_base_url = 'https://genly-226908.appspot.com/spotify/';
+const spotify_base_url = process.env.REACT_APP_SPOTIFY_BASE_URL;
 const token = getToken() ? 'Bearer ' + getToken()['token'] : null; // check the token exists.
 
 export function getUserSpotifyProfile() {

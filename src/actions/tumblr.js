@@ -11,7 +11,7 @@ import {
 
 import { getToken } from './../helpers';
 
-const tumblr_base_url = 'https://genly-226908.appspot.com/tumblr/';
+const tumblr_base_url = process.env.REACT_APP_TUMBLR_BASE_URL;
 const token = getToken() ? 'Bearer ' + getToken()['token'] : null; // check the token exists.
 
 export function getUserBlogPosts(blogName) {

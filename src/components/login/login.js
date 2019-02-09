@@ -11,8 +11,8 @@ import { spotify_token_scopes } from '../../enums';
 // css.
 import './login.css';
 
-const spotify_client_id = 'b8d858330e0e4ab28a6e318a518c694c';
-const spotify_redirect_uri = 'http://localhost:3000/';
+const spotify_client_id = process.env.REACT_APP_SPOTIFY_PUBLIC_CLIENT_ID;
+const spotify_redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
 class Login extends Component {
   login() {
@@ -86,7 +86,7 @@ class Login extends Component {
                     <NavLink to='/feedback'>
                       Feedback
                     </NavLink>
-                  </li>*/}
+                  </li>*/ }
                 </ul>
               </div>
               <div className="parent">
