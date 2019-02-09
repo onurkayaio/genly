@@ -5,6 +5,7 @@ import connect from 'react-redux/es/connect/connect';
 
 // actions.
 import { getUserSpotifyProfile } from '../../actions/spotify';
+import { clearPostsAndErrors } from '../../actions/tumblr';
 
 // helper
 import { deleteToken } from '../../helpers';
@@ -13,8 +14,18 @@ import { deleteToken } from '../../helpers';
 import './header.css';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.clearData = this.clearData.bind(this);
+  }
+
   componentDidMount() {
     this.props.getUserSpotifyProfile();
+  }
+
+  clearData() {
+    this.props.clearPostsAndErrors();
   }
 
   logout() {
@@ -28,9 +39,7 @@ class Header extends Component {
       <div>
         <header className="header">
           <div className="logo">
-            <Link to="/dashboard">
-              <img alt="" src={ require('../../images/logo.png') }/>
-            </Link>
+            <img onClick={ this.clearData } alt="" src={ require('../../images/logo.png') }/>
           </div>
           <div className="login">
             <div className="login-left">
@@ -41,7 +50,7 @@ class Header extends Component {
                 {/*<a href="/logout" className="logout-url" style={ { 'marginRight': '5px' } }>
                   Share
                 </a>
-                |*/}
+                |*/ }
                 <Link onClick={ this.logout } className="logout-url" to="/" style={ { 'marginLeft': '5px' } }>
                   Logout
                 </Link>
@@ -63,13 +72,14 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    spotify: state.spotify
+    spotify: state.spotify,
+    tumblr: state.tumblr
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { getUserSpotifyProfile },
+    { getUserSpotifyProfile, clearPostsAndErrors },
     dispatch
   );
 }

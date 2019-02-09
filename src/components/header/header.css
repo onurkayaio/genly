@@ -39,6 +39,7 @@
 }
 
 .header .login .login-left {
+  width: 150px;
   text-align: right;
   margin-right: 0.625rem;
   color: #212529 !important
@@ -49,7 +50,6 @@
   height: 1.625rem;
   width: 1.625rem;
   border-radius: 0.8125rem;
-  box-shadow: 0 0 0 2px #1e3264;
   overflow: hidden;
 }
 

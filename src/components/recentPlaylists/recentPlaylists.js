@@ -18,7 +18,7 @@ class RecentPlaylists extends Component {
       return (
         <div className="col-md-3 col-6" key={ value.playlistId }>
           <div className="box gallery">
-            <div className="card">
+            <div className="recent-card">
               <div className="background">
                 <img className="card-img-top" src={ value.cover } alt=""/>
 

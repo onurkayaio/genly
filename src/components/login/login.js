@@ -12,7 +12,7 @@ import { spotify_token_scopes } from '../../enums';
 import './login.css';
 
 const spotify_client_id = 'b8d858330e0e4ab28a6e318a518c694c';
-const spotify_redirect_uri = 'https://trusting-wilson-5efb51.netlify.com/';
+const spotify_redirect_uri = 'http://localhost:3000/';
 
 class Login extends Component {
   login() {

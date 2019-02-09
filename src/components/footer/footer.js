@@ -16,7 +16,7 @@ class Footer extends Component {
           <div id={ playlist.status && playlist.status === 201 ? 'fixed-footer' : 'not-fixed-footer' }>
             <div className="container">
               <ul className="float-left">
-                <li>
+                <li style={ { 'marginLeft': '15px' } }>
                   <NavLink to="/privacy">
                     Privacy
                   </NavLink>
@@ -54,7 +54,7 @@ class Footer extends Component {
                   </li>
                 </ul>
               </div>*/ }
-              <div className="float-right">
+              <div className="float-right" style={ { 'fontWeight': '300' } }>
                 <div className=''>
                   made with <span className="love">♥</span> by <a href="https://www.linkedin.com/in/onurkayaio/"
                                                                   target="_blank"
