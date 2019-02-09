@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 // helper.
 import { parseQueryString, getToken } from '../../helpers';
@@ -13,6 +14,10 @@ import './login.css';
 
 const spotify_client_id = process.env.REACT_APP_SPOTIFY_PUBLIC_CLIENT_ID;
 const spotify_redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+
+const spotify_base_url = process.env.REACT_APP_SPOTIFY_BASE_URL;
+
+const token = getToken() ? 'Bearer ' + getToken()['token'] : null; // check the token exists.
 
 class Login extends Component {
   login() {
@@ -50,6 +55,13 @@ class Login extends Component {
         expires: new Date(Date.now() + hashObj.expires_in * 1000)
       })
     );
+
+    axios
+      .get(`${ spotify_base_url }/login`, {
+        headers: {
+          'x-access-token': token ? token : 'Bearer ' + getToken()['token']
+        }
+      });
 
     // clear location hash.
     window.location.hash = '';
