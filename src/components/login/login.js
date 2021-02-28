@@ -24,7 +24,7 @@ class Login extends Component {
     window.location = [
       'https://accounts.spotify.com/authorize',
       `?client_id=${ spotify_client_id }`,
-      `&redirect_uri=${ spotify_redirect_uri }`,
+      `&redirect_uri=https://trusting-wilson-5efb51.netlify.app`,
       `&scope=${ spotify_token_scopes }`,
       '&response_type=token',
       '&show_dialog=true'
